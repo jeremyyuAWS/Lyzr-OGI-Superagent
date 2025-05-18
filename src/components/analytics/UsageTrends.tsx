@@ -14,7 +14,7 @@ const UsageTrends = () => {
     <div>
       <div className="flex justify-between items-center mb-4">
         <div className="text-sm text-gray-500">
-          Agent runs over time
+          Agent usage trends
         </div>
         <div className="flex space-x-1 text-xs">
           <button 

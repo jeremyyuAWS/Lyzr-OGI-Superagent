@@ -13,7 +13,7 @@ const ROIDashboard = () => {
     <div>
       <div className="flex justify-between items-center mb-4">
         <div className="text-sm text-gray-500">
-          ROI breakdown by source
+          Pipeline impact breakdown
         </div>
         <div className="text-xl font-semibold text-gray-700">
           ${totalRoi.toLocaleString()}
@@ -74,7 +74,7 @@ const ROIDashboard = () => {
       </div>
       
       <div className="bg-gray-50 p-4 rounded-lg mt-4">
-        <h4 className="text-sm font-medium text-gray-700 mb-2">ROI Sources</h4>
+        <h4 className="text-sm font-medium text-gray-700 mb-2">Pipeline Impact Sources</h4>
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <div className="flex items-center">

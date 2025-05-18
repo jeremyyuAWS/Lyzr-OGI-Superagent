@@ -1,3 +1,4 @@
+import { MessageSquare, Users, Mail, Calendar, BarChart3, CheckCircle, Target, FileSearch, ListTodo, Briefcase, BookOpen, TrendingUp, LineChart, PieChart, Link, Database, ArrowUpCircle, Shield, Settings, Clock, Globe, Search, Laptop, BellRing } from 'lucide-react';
 import { Agent } from '../types/agents';
 
 export interface Message {
@@ -7,587 +8,369 @@ export interface Message {
   timestamp: Date;
 }
 
-export interface DemoScenario {
-  id: string;
+interface DemoScenario {
   title: string;
-  description: string;
-  questions: string[];
   initialMessages: Message[];
+  questions: string[];
 }
 
-// Map of agent ID to their demo scenarios
 export const agentDemoScenarios: Record<string, DemoScenario> = {
-  // General Purpose
+  // ICP & Strategy Agents
   '1': {
-    id: 'compliance-demo',
-    title: 'Regulatory Compliance Demo',
-    description: 'See how our Regulatory Compliance Agent ensures adherence to regulations',
-    questions: [
-      'Verify compliance with recent regulatory changes',
-      'Generate a compliance report for this product',
-      'What KYC requirements apply to this customer type?',
-      'Identify potential compliance risks in this process'
-    ],
+    title: 'Defining Your Ideal Customer Profile',
     initialMessages: [
       {
-        id: 'compliance-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Regulatory Compliance demo. I ensure banking operations adhere to current regulations and compliance requirements. I monitor regulatory changes, assess impacts, and guide implementation of compliance measures. How can I assist with your compliance needs today?',
+        content: "Welcome to the ICP Assistant! I'll help you define and refine your ideal customer profile to focus your sales development efforts. What industry or segment are you currently targeting?",
         timestamp: new Date()
+      },
+      {
+        id: '2',
+        sender: 'user',
+        content: "We're currently targeting the SaaS industry, but I'm not sure if we're being specific enough.",
+        timestamp: new Date(Date.now() - 60000)
+      },
+      {
+        id: '3',
+        sender: 'agent',
+        content: "SaaS is a good starting point, but you're right that it's quite broad. Let me help you narrow it down.\n\nBased on analysis of your current customer base and market trends, I recommend focusing on these SaaS sub-segments:\n\n1. **B2B SaaS platforms** with 100-500 employees\n2. **Vertical SaaS solutions** in fintech, healthtech, and martech\n3. **Growth-stage SaaS companies** that raised Series B or C funding in the last 18 months\n\nThese segments show higher conversion rates and shorter sales cycles for solutions like yours. Would you like me to help you further refine any of these segments?",
+        timestamp: new Date(Date.now() - 30000)
       }
+    ],
+    questions: [
+      "Which industries should we focus on for our product?",
+      "What company size range is ideal for our solution?",
+      "How do we identify the right decision makers?",
+      "What are the key indicators of a good-fit company?"
     ]
   },
+  
   '2': {
-    id: 'competitor-demo',
-    title: 'Competitor Research Demo',
-    description: 'Experience how our Competitor Research Agent analyzes market offerings',
-    questions: [
-      'Compare our mortgage rates to main competitors',
-      'What new features are competitors offering?',
-      'Analyze pricing trends in checking accounts',
-      'Identify competitive gaps in our product lineup'
-    ],
+    title: 'Lead Enrichment Strategies',
     initialMessages: [
       {
-        id: 'competitor-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Competitor Research demo. I monitor and analyze competitor products, pricing, and strategies to inform business decisions. I can provide competitive intelligence, market trends, and strategic insights. What competitive analysis would you like me to demonstrate today?',
+        content: "Hello! I'm your Lead Enrichment Agent. I can help add valuable firmographic, technographic, and intent data to your prospect records. What kind of information are you looking to enhance?",
         timestamp: new Date()
-      }
-    ]
-  },
-  '3': {
-    id: 'fraud-demo',
-    title: 'Fraud Detection Demo',
-    description: 'Experience how our Fraud Detection Agent identifies suspicious activities',
-    questions: [
-      'Analyze this transaction for potential fraud',
-      'What patterns suggest this might be fraudulent?',
-      'Calculate the risk score for this activity',
-      'What actions should we take for this case?'
-    ],
-    initialMessages: [
+      },
       {
-        id: 'fraud-1',
+        id: '2',
+        sender: 'user',
+        content: "We have a list of companies but we're missing key contact information and tech stack details.",
+        timestamp: new Date(Date.now() - 45000)
+      },
+      {
+        id: '3',
         sender: 'agent',
-        content: 'Welcome to the Fraud Detection demo. I monitor transactions in real-time to identify and prevent fraudulent activities. I analyze patterns, behaviors, and risk indicators to protect our customers and the bank from financial losses. How can I demonstrate my fraud detection capabilities today?',
-        timestamp: new Date()
+        content: "I'll help you enrich those records with the critical data points. Here's what I recommend:\n\n**Step 1: Contact Enrichment**\n- I can identify key decision-makers at each company based on your target personas\n- For each company, I'll find relevant VP/Director/Manager of Marketing, Sales, and Operations\n- Each contact will include verified email, phone, and LinkedIn profile\n\n**Step 2: Technographic Enrichment**\n- I'll identify their current tech stack, focusing on CRM, Marketing Automation, and Sales Engagement platforms\n- This will help you tailor your outreach based on integration capabilities and tech-based pain points\n\n**Step 3: Intent Signal Overlay**\n- I'll scan for buying signals like content consumption, job postings, and competitor research\n- This helps prioritize accounts showing active interest in solutions like yours\n\nWould you like to start with a batch of 100 companies as a test?",
+        timestamp: new Date(Date.now() - 15000)
       }
+    ],
+    questions: [
+      "How can we enrich our lead data most effectively?",
+      "What intent signals should we look for in our target accounts?",
+      "Which enrichment sources provide the most accurate data?",
+      "How can we verify contact information at scale?"
     ]
   },
+  
   '4': {
-    id: 'sentiment-demo',
-    title: 'Customer Sentiment Analysis Demo',
-    description: 'See how our Customer Sentiment Agent analyzes feedback across channels',
-    questions: [
-      'Analyze sentiment trends from recent feedback',
-      'What are the top customer pain points?',
-      'How has sentiment changed after our recent update?',
-      'Compare satisfaction across different channels'
-    ],
+    title: 'Crafting High-Converting Emails',
     initialMessages: [
       {
-        id: 'sentiment-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Customer Sentiment Analysis demo. I analyze customer feedback across channels to identify sentiment trends and improvement areas. I can help you understand customer perceptions, track satisfaction metrics, and identify opportunities for enhancement. What sentiment analysis would you like to see?',
+        content: "Hi there! I'm your Email Assistant. I can help craft personalized, high-converting emails for your sales outreach. What specific audience or persona are you reaching out to?",
         timestamp: new Date()
+      },
+      {
+        id: '2',
+        sender: 'user',
+        content: "I need to reach out to VPs of Marketing at SaaS companies with 500+ employees.",
+        timestamp: new Date(Date.now() - 50000)
+      },
+      {
+        id: '3',
+        sender: 'agent',
+        content: "Great target audience! VPs of Marketing at enterprise SaaS companies typically respond best to data-driven, results-focused messaging that addresses their strategic challenges. Here's a draft email for this persona:\n\n```\nSubject: [Research] Marketing attribution challenge at {Company}\n\nHi {FirstName},\n\nI was reviewing {Company}'s recent product launch for {Recent Product} and noticed you're expanding into the {Specific Market} segment – impressive positioning, especially the focus on {Specific Feature/Benefit}.\n\nThis typically creates challenges with:\n\n• Multi-touch attribution across longer enterprise sales cycles\n• Aligning marketing activities with revenue outcomes\n• Demonstrating ROI to leadership, especially with current market pressures\n\nWe've helped marketing leaders at {Similar Company 1} and {Similar Company 2} address these challenges, resulting in 40% more accurate attribution and typically a 15-25% higher marketing-sourced pipeline.\n\nCould I share how these companies implemented this approach during a 15-minute call next week?\n\n{Your Signature}\n```\n\nThis template succeeds because it:\n1. Uses research-focused subject line (52% higher open rates)\n2. Shows you've done specific homework on their company\n3. Addresses common VP-level pain points\n4. Provides social proof with similar companies\n5. Includes specific metrics for credibility\n6. Offers a clear, low-friction next step\n\nWould you like me to customize this further for your specific product or value proposition?",
+        timestamp: new Date(Date.now() - 20000)
       }
+    ],
+    questions: [
+      "How can we improve our email open rates?",
+      "What subject lines are performing best right now?",
+      "Help me craft a follow-up email for a prospect who went cold",
+      "What's the ideal length for a cold outreach email?"
     ]
   },
+  
   '5': {
-    id: 'doc-process-demo',
-    title: 'Document Processing Demo',
-    description: 'Experience how our Document Processing Agent extracts and processes data',
-    questions: [
-      'Extract data from this financial statement',
-      'Process this batch of invoices',
-      'Validate information on this ID document',
-      'Categorize and file these customer documents'
-    ],
+    title: 'Building Multi-Channel Sequences',
     initialMessages: [
       {
-        id: 'doc-process-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Document Processing demo. I extract and process data from various document types to automate administrative tasks. I can analyze documents, extract structured data, and integrate with banking systems to streamline operations. What document processing task would you like me to demonstrate?',
+        content: "Welcome to the Sequence Builder! I'll help you design effective multi-channel outreach sequences that combine email, LinkedIn, and other touchpoints. What's the goal of your campaign?",
         timestamp: new Date()
-      }
-    ]
-  },
-  '6': {
-    id: 'predictive-demo',
-    title: 'Predictive Analytics Demo',
-    description: 'See how our Predictive Analytics Agent forecasts trends and behaviors',
-    questions: [
-      'Forecast deposit growth for next quarter',
-      'Predict churn risk for premium account holders',
-      'Identify customers likely to need a loan soon',
-      'Project impact of upcoming rate changes'
-    ],
-    initialMessages: [
+      },
       {
-        id: 'predictive-1',
+        id: '2',
+        sender: 'user',
+        content: "We're launching a new feature and want to reengage dormant opportunities from the last 6 months.",
+        timestamp: new Date(Date.now() - 55000)
+      },
+      {
+        id: '3',
         sender: 'agent',
-        content: 'Welcome to the Predictive Analytics demo. I forecast customer behavior and financial trends to enable proactive business decisions. I can predict future outcomes, identify opportunities, and help optimize strategies based on data patterns. What predictive analysis would you like me to demonstrate today?',
-        timestamp: new Date()
+        content: "Perfect! Reengaging dormant opportunities with a new feature launch is a great strategy. Here's a multi-channel sequence I recommend for this specific scenario:\n\n**Day 1: Email - New Feature Announcement**\n- Subject: \"New for {Company}: {Feature Name} Now Available\"\n- Focus on how this feature addresses the specific challenge they mentioned in previous conversations\n- Include a visual (GIF or image) of the new feature\n- Soft CTA: \"Would this capability address the {specific pain point} we discussed?\"\n\n**Day 3: LinkedIn Comment + Message**\n- Comment on a recent post (if available) with relevant insight\n- Send connection request if not connected\n- Send InMail/message referencing your comment and the new feature\n\n**Day 5: Email - Case Study**\n- Subject: \"How {Similar Company} used our new {Feature} to {achieve specific result}\"\n- Include specific metrics and outcomes from early adopters\n- End with \"Curious if these results would be valuable for {Company}?\"\n\n**Day 8: Phone Call**\n- Brief voicemail referencing the new feature and previous conversation\n- Focus on new value proposition based on past objections\n\n**Day 10: Email - Break-up**\n- Subject: \"Closing the loop on {Feature Name}\"\n- Brief note mentioning that you'll stop reaching out\n- Include a \"by the way\" mention of one more compelling benefit\n\n**Best Practices for This Sequence:**\n- Personalize each touch with reference to your previous conversations\n- Focus on what's changed since you last spoke (new feature, new market conditions)\n- A/B test mentioning vs. not mentioning the pandemic delay\n\nWould you like me to draft the specific content for each of these touchpoints?",
+        timestamp: new Date(Date.now() - 25000)
       }
+    ],
+    questions: [
+      "How many touches should my sequence include?",
+      "What's the optimal spacing between touchpoints?",
+      "How should we mix email and LinkedIn in our sequence?",
+      "When should we include phone calls in our outreach?"
     ]
   },
   
-  // Customer Self-Serve
-  '7': {
-    id: 'support-demo',
-    title: 'Customer Support Demo',
-    description: 'Experience how our Customer Support Agent handles banking inquiries',
-    questions: [
-      'How do I dispute a transaction?',
-      'What are the fees for international transfers?',
-      'Help me understand my account statement',
-      'How do I update my contact information?'
-    ],
-    initialMessages: [
-      {
-        id: 'support-1',
-        sender: 'agent',
-        content: 'Welcome to the Customer Support demo. I handle common banking queries and resolve customer issues across multiple channels. I can assist with account inquiries, transaction issues, and general banking information. How may I help you today?',
-        timestamp: new Date()
-      }
-    ]
-  },
   '8': {
-    id: 'account-mgmt-demo',
-    title: 'Account Management Demo',
-    description: 'See how our Account Management Agent helps customers manage their accounts',
-    questions: [
-      'How do I change my account type?',
-      'Update my address and contact details',
-      'Add a joint account holder',
-      'Set up account alerts'
-    ],
+    title: 'SDR Performance Coaching',
     initialMessages: [
       {
-        id: 'account-mgmt-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Account Management demo. I assist customers with account updates, changes, and management functions. I can help you modify account details, understand account features, and configure account preferences. What account management task can I help you with today?',
+        content: "Welcome! I'm your SDR Performance Coach. I analyze sales outreach metrics and provide tactical improvements for sales outreach. What specific aspect of your performance would you like to work on?",
         timestamp: new Date()
+      },
+      {
+        id: '2',
+        sender: 'user',
+        content: "My reply rates are really low compared to the rest of the team. I need help figuring out why and how to fix it.",
+        timestamp: new Date(Date.now() - 40000)
+      },
+      {
+        id: '3',
+        sender: 'agent',
+        content: "I've analyzed your outreach patterns compared to team members with higher reply rates, and I've identified several areas for improvement:\n\n**Key Issues in Your Current Approach:**\n\n1. **Email Structure Issues:**\n   - Your emails average 185 words vs. top performers' 120 words\n   - You use 3+ features per email vs. top performers' focus on 1 key value point\n   - Your CTAs often ask for too much commitment too early\n\n2. **Personalization Approach:**\n   - Your personalization is often generic (\"I noticed your company...\") \n   - Top performers reference specific content, news, or triggers\n   - You're using the same level of personalization for all prospects\n\n3. **Follow-up Effectiveness:**\n   - Your follow-ups often just \"check in\" without adding new value\n   - Your timing clusters around 9-10am when inbox competition is highest\n\n**Recommended Action Plan:**\n\n1. **Immediate Changes (Next 5 days):**\n   - Reduce all email length by 30-40%\n   - Move your sends to 7-8am or 3-4pm (63% higher reply rates)\n   - Test subject lines that ask a question related to their role\n\n2. **Process Improvements (Next 2 weeks):**\n   - Schedule 15 min daily for deeper prospect research before writing\n   - Create a \"value nugget\" document to include in follow-ups\n   - A/B test with more assertive CTAs vs. your current approach\n\nWould you like me to review one of your recent emails and rewrite it using these principles?",
+        timestamp: new Date(Date.now() - 10000)
       }
+    ],
+    questions: [
+      "How can our team improve response rates?",
+      "What are top performers doing differently?",
+      "How can we optimize our outreach timing?",
+      "What metrics should we focus on improving?"
     ]
   },
+  
   '9': {
-    id: 'card-mgmt-demo',
-    title: 'Card Management Demo',
-    description: 'Experience how our Card Management Agent handles card-related requests',
-    questions: [
-      'Activate my new credit card',
-      'Report a lost debit card',
-      'Dispute a fraudulent transaction',
-      'Adjust my card spending limits'
-    ],
+    title: 'Campaign Analytics Review',
     initialMessages: [
       {
-        id: 'card-mgmt-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Card Management demo. I help customers manage credit and debit cards, including activation, replacement, and dispute resolution. I can assist with card-related inquiries, security features, and transaction issues. What card management task would you like assistance with today?',
+        content: "Hi there! I'm your Analytics Agent. I can help you understand your campaign performance metrics and identify opportunities for improvement. What data would you like to analyze?",
         timestamp: new Date()
-      }
-    ]
-  },
-  '10': {
-    id: 'refund-demo',
-    title: 'Refund Processing Demo',
-    description: 'See how our Refund Processing Agent handles refund requests',
-    questions: [
-      'Request a refund for a duplicate charge',
-      'Check the status of my refund request',
-      'Dispute a transaction fee',
-      'How long do refunds typically take?'
-    ],
-    initialMessages: [
+      },
       {
-        id: 'refund-1',
-        sender: 'agent',
-        content: 'Welcome to the Refund Processing demo. I streamline the refund request process for disputed transactions and fee reversals. I can help you submit refund requests, track their status, and resolve any issues that may arise. How can I assist with your refund request today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '11': {
-    id: 'retirement-demo',
-    title: 'Retirement Planning Demo',
-    description: 'Experience how our Retirement Planning Agent provides personalized advice',
-    questions: [
-      'What retirement accounts do you offer?',
-      'Calculate my retirement savings needs',
-      'Evaluate my current retirement plan',
-      'Recommend a retirement portfolio allocation'
-    ],
-    initialMessages: [
+        id: '2',
+        sender: 'user',
+        content: "Can you analyze our current outreach campaign to enterprise accounts? We're not getting the results we expected.",
+        timestamp: new Date(Date.now() - 50000)
+      },
       {
-        id: 'retirement-1',
+        id: '3',
         sender: 'agent',
-        content: 'Welcome to the Retirement Planning demo. I provide retirement planning advice and portfolio recommendations based on your financial goals and timeline. I can help you assess your retirement readiness, calculate future needs, and develop a personalized strategy. How can I assist with your retirement planning today?',
-        timestamp: new Date()
+        content: "I've analyzed your enterprise outreach campaign, and I've identified several performance issues and opportunities:\n\n**Campaign Performance Overview:**\n- Open Rate: 28.4% (10.2% below benchmark)\n- Reply Rate: 3.8% (5.7% below benchmark) ⚠️\n- Meeting Rate: 0.8% (2.1% below benchmark) ⚠️\n- Sequence Completion: 64% (on par with benchmark)\n\n**Key Issues Identified:**\n\n1. **Engagement Drop-off:**\n   - 72% of opens occur, but only 13% convert to replies\n   - Highest drop-off occurs after email #2 in the sequence\n\n2. **Persona Performance Disparity:**\n   - CTO persona: 2.1% reply rate\n   - CIO persona: 6.4% reply rate\n   - VP IT persona: 2.8% reply rate\n   - This suggests your CIO messaging is significantly more effective\n\n3. **Content Effectiveness:**\n   - Case study links: 0.4% click rate\n   - Product overview links: 1.2% click rate\n   - ROI calculator: 4.8% click rate ✓\n\n**Recommended Adjustments:**\n\n1. **Immediate Optimization:**\n   - Shift messaging toward ROI/cost-focused value props for all personas\n   - Replace email #2 with the template pattern used for CIO persona\n   - A/B test including the ROI calculator earlier in sequence\n\n2. **Targeting Adjustments:**\n   - Increase focus on companies with recent budget announcements (2.7x more responsive)\n   - Prioritize contacts with 5+ years tenure (responding 40% more frequently)\n\nWould you like me to prepare a more detailed analysis of any specific aspect of the campaign?",
+        timestamp: new Date(Date.now() - 20000)
       }
+    ],
+    questions: [
+      "How is our current campaign performing?",
+      "Which segments show the highest engagement?",
+      "What's our current meeting conversion rate?",
+      "How do our metrics compare to industry benchmarks?"
     ]
   },
+  
   '12': {
-    id: 'wealth-demo',
-    title: 'Wealth Management Demo',
-    description: 'See how our Wealth Management Agent provides investment insights',
-    questions: [
-      'Analyze this customer\'s portfolio performance',
-      'What rebalancing would you recommend?',
-      'Identify opportunities for optimization',
-      'Explain the risk assessment for this portfolio'
-    ],
+    title: 'Lead Qualification Strategy',
     initialMessages: [
       {
-        id: 'wealth-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Wealth Management demo. I analyze customer portfolios and provide investment insights and optimization recommendations. I can help identify opportunities, assess risks, and suggest strategies to achieve your financial goals. What would you like me to help you with today?',
+        content: "Hello! I'm your Meeting Qualifier Agent. I help ensure you're booking meetings with prospects who are a good fit for your solution. How are you currently qualifying your leads?",
         timestamp: new Date()
+      },
+      {
+        id: '2',
+        sender: 'user',
+        content: "We're mostly focusing on company size and industry, but we're getting a lot of meetings that don't convert to opportunities. We need better qualification criteria.",
+        timestamp: new Date(Date.now() - 45000)
+      },
+      {
+        id: '3',
+        sender: 'agent',
+        content: "You're right that going beyond basic firmographics will significantly improve your meeting quality. Let me suggest a comprehensive qualification framework that will help book more meaningful meetings:\n\n**MEDPIC Qualification Framework**\n\n1. **M - Metrics:**\n   - What specific KPIs is the prospect trying to improve?\n   - Qualification criteria: Must have at least 2 of these quantifiable pain points:\n     • CAC above industry benchmark\n     • Lead-to-opportunity rate below 15%\n     • Sales cycle longer than 60 days\n     • SDR ramp time exceeding 3 months\n\n2. **E - Economic Buyer:**\n   - Who has budget authority for this purchase?\n   - Qualification criteria: Must have confirmed access to:\n     • Director+ level for initial meeting\n     • VP+ level involved by opportunity stage\n     • Budget owner identified by name\n\n3. **D - Decision Process:**\n   - What's their evaluation and purchase process?\n   - Qualification criteria:\n     • Process can be completed in <90 days\n     • No more than 5 stakeholders required\n     • No competing priorities that would delay decision\n\n4. **P - Pain Points:**\n   - What specific challenges are they facing?\n   - Qualification criteria: Must acknowledge at least 1 primary and 1 secondary:\n     • Primary: Pipeline generation, sales efficiency, conversion rates\n     • Secondary: Analytics, onboarding, scaling, territory management\n\n5. **I - Implementation Timeline:**\n   - When would they implement a solution?\n   - Qualification criteria:\n     • Implementation within next quarter\n     • Resources already allocated for deployment\n     • No major organizational changes pending\n\n6. **C - Current Solution:**\n   - What are they using now to solve this problem?\n   - Qualification criteria:\n     • Using manual process or underperforming tool\n     • Contract renewal within 6 months\n     • Experiencing specific limitations you solve\n\n**Implementation Process:**\n1. Create a pre-call checklist of 5-7 key questions\n2. Add qualification fields to your CRM opportunity records\n3. Score each opportunity against this framework (0-100)\n4. Set minimum threshold for AE handoff at 70+\n\nWould you like me to help you build a custom version of this framework specific to your product and market?",
+        timestamp: new Date(Date.now() - 15000)
       }
+    ],
+    questions: [
+      "What qualification criteria should we use?",
+      "How can we identify prospects who are ready for a meeting?",
+      "What disqualification signals should we watch for?",
+      "How do we balance quantity and quality of meetings?"
     ]
   },
   
-  // Customer Onboarding
-  '13': {
-    id: 'onboarding-demo',
-    title: 'Customer Onboarding Demo',
-    description: 'Experience how our Customer Onboarding Agent streamlines the account opening process',
-    questions: [
-      'Guide me through opening a new checking account',
-      'What documents do I need for a joint account?',
-      'How long does the account opening process take?',
-      'What are the next steps after my application is approved?'
-    ],
-    initialMessages: [
-      {
-        id: 'onboard-1',
-        sender: 'agent',
-        content: 'Welcome to the Customer Onboarding demo. I can help guide you through the process of opening a new account, selecting appropriate banking services, and completing the required documentation. How can I assist you today?',
-        timestamp: new Date()
-      }
-    ]
-  },
   '14': {
-    id: 'application-demo',
-    title: 'Application Processing Demo',
-    description: 'See how our Application Processing Agent handles new account applications',
-    questions: [
-      'Process this checking account application',
-      'What information is missing from this application?',
-      'Verify the application status',
-      'What\'s the timeline for application approval?'
-    ],
+    title: 'Meeting Preparation',
     initialMessages: [
       {
-        id: 'application-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Application Processing demo. I process customer applications for new accounts and banking services efficiently. I can verify application information, identify missing details, and guide you through the submission process. How can I assist with your application today?',
+        content: "Hello! I'm your Call Prep Agent. I help you prepare for sales calls by researching prospects, identifying talking points, and preparing for potential objections. What upcoming call would you like help with?",
         timestamp: new Date()
-      }
-    ]
-  },
-  '15': {
-    id: 'doc-collection-demo',
-    title: 'Document Collection Demo',
-    description: 'See how our Document Collection Agent simplifies the document gathering process',
-    questions: [
-      'What documents do I need for identity verification?',
-      'Can I upload documents through mobile banking?',
-      'How do I submit proof of address?',
-      'Is there a checklist for required documentation?'
-    ],
-    initialMessages: [
+      },
       {
-        id: 'doc-1',
-        sender: 'agent',
-        content: 'Welcome to the Document Collection demo. I help streamline the gathering and verification of required customer documentation for account opening and other banking services. I can guide you through the documentation requirements and submission process. What would you like assistance with today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '16': {
-    id: 'kyc-demo',
-    title: 'KYC & AML Verification Demo',
-    description: 'See how our KYC & AML Verification Agent ensures regulatory compliance',
-    questions: [
-      'Verify this customer\'s identity documents',
-      'What additional verification is needed for high-risk customers?',
-      'Run a sanctions screening check',
-      'What are the red flags in this customer profile?'
-    ],
-    initialMessages: [
+        id: '2',
+        sender: 'user',
+        content: "I have a first call with the VP of Sales at Acme Corp tomorrow. They're a mid-market SaaS company in the HR tech space.",
+        timestamp: new Date(Date.now() - 55000)
+      },
       {
-        id: 'kyc-1',
+        id: '3',
         sender: 'agent',
-        content: 'Welcome to the KYC & AML Verification demo. I automate identity verification and anti-money laundering checks to ensure regulatory compliance. I can help verify customer identities, screen for sanctions, and identify potential risk factors. How can I assist you today?',
-        timestamp: new Date()
+        content: "I've prepared a comprehensive briefing for your call with the VP of Sales at Acme Corp. Here's everything you need to know:\n\n**Prospect Profile: Acme Corp**\n\n- **Company Overview:**\n  - HR Tech SaaS platform, 280 employees, $42M annual revenue\n  - Series C funding ($25M) closed 7 months ago\n  - Growth rate: ~40% YoY for the past 2 years\n\n- **Sales Organization:**\n  - Team structure: 4 sales managers, ~25 AEs, 12 SDRs\n  - Recently reorganized territories (Q1 2025)\n  - Using Salesforce + Outreach.io + Gong\n\n- **Competitive Landscape:**\n  - Key competitors: Workday, BambooHR, Rippling\n  - Recent market changes: Increased focus on AI-powered recruiting\n\n- **Contact: Sarah Johnson, VP of Sales**\n  - At company for 2.1 years, promoted 6 months ago\n  - Background: Previously Sales Director at ZoomInfo (4 years)\n  - LinkedIn activity: Recently posted about sales productivity challenges\n  - Possible pain points: SDR productivity, pipeline predictability, scaling sales org with new funding\n\n**Recommended Approach:**\n\n- **Key Discussion Points:**\n  1. Congratulate on promotion and recent funding\n  2. Ask about priorities following the territory reorganization\n  3. Explore scaling challenges with 40% growth rate\n  4. Connect their background at ZoomInfo to your data-driven approach\n\n- **Discovery Questions:**\n  - \"What metrics are most important for your SDR team right now?\"\n  - \"How are you currently measuring sales productivity across teams?\"\n  - \"With your recent growth, what's been the biggest challenge in maintaining pipeline quality?\"\n  - \"How satisfied are you with your current tech stack's ability to support your growth?\"\n\n- **Potential Objections & Responses:**\n  - \"We just implemented new tools\" → Focus on complementary value, not replacement\n  - \"Our process is working fine\" → Use industry benchmarks to create healthy tension\n  - \"This isn't a priority right now\" → Tie to post-funding growth objectives\n\n- **Next Steps Strategy:**\n  - If positive: Suggest technical discovery with their Salesforce admin\n  - If hesitant: Offer to share case study from similar HR Tech company\n\nWould you like me to prepare any additional information before your call?",
+        timestamp: new Date(Date.now() - 20000)
       }
-    ]
-  },
-  '17': {
-    id: 'account-setup-demo',
-    title: 'Account Setup Demo',
-    description: 'See how our Account Setup Agent configures new accounts efficiently',
-    questions: [
-      'Set up a new premium checking account',
-      'Configure overdraft protection',
-      'Set initial account limits',
-      'Enable digital banking services'
     ],
-    initialMessages: [
-      {
-        id: 'setup-1',
-        sender: 'agent',
-        content: 'Welcome to the Account Setup demo. I help configure and provision new accounts with appropriate services, limits, and system settings. I can ensure that new accounts are properly set up according to customer preferences and bank policies. What account setup task would you like me to demonstrate?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '18': {
-    id: 'service-enroll-demo',
-    title: 'Service Enrollment Demo',
-    description: 'Experience how our Service Enrollment Agent recommends and activates banking services',
     questions: [
-      'What services do you recommend for my new account?',
-      'Enroll me in direct deposit',
-      'Set up bill pay service',
-      'How do I activate mobile banking?'
-    ],
-    initialMessages: [
-      {
-        id: 'enroll-1',
-        sender: 'agent',
-        content: 'Welcome to the Service Enrollment demo. I help customers select and enroll in appropriate banking services based on their needs and preferences. I can recommend services, explain features and benefits, and guide you through the enrollment process. How can I assist you today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '19': {
-    id: 'activation-demo',
-    title: 'Activation Demo',
-    description: 'See how our Activation Agent helps customers activate their banking services',
-    questions: [
-      'Activate my new debit card',
-      'Set up my online banking access',
-      'Authorize my mobile device for banking',
-      'Troubleshoot activation issues'
-    ],
-    initialMessages: [
-      {
-        id: 'activation-1',
-        sender: 'agent',
-        content: 'Welcome to the Activation demo. I guide customers through the activation process for accounts, cards, and digital services. I can assist with verifying identity, setting up credentials, and resolving any activation issues. What would you like to activate today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '20': {
-    id: 'education-demo',
-    title: 'Customer Education Demo',
-    description: 'Experience how our Customer Education Agent helps customers understand their banking options',
-    questions: [
-      'Explain how overdraft protection works',
-      'What security features should I enable?',
-      'How can I maximize rewards on my account?',
-      'Show me how to use mobile check deposit'
-    ],
-    initialMessages: [
-      {
-        id: 'education-1',
-        sender: 'agent',
-        content: 'Welcome to the Customer Education demo. I provide educational resources and guidance to help customers maximize their banking experience. I can explain features, demonstrate functionality, and share best practices for managing your finances. What would you like to learn about today?',
-        timestamp: new Date()
-      }
+      "What should I research before a first meeting?",
+      "How do I prepare for common objections?",
+      "What discovery questions should I ask?",
+      "How should I structure my first call?"
     ]
   },
   
-  // Loan Origination
-  '21': {
-    id: 'loan-app-demo',
-    title: 'Loan Application Demo',
-    description: 'See how our Loan Application Agent guides customers through the application process',
-    questions: [
-      'Guide me through a mortgage application',
-      'What information do I need for a home equity loan?',
-      'What loan options are available for my credit profile?',
-      'Calculate my estimated monthly payment'
-    ],
+  '20': {
+    title: 'Responsible AI in Sales',
     initialMessages: [
       {
-        id: 'loan-app-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Loan Application demo. I process loan applications and guide customers through the entire application workflow. I can help you understand loan options, required documentation, and eligibility criteria. What type of loan are you interested in applying for?',
+        content: "Welcome! I'm your Responsible AI Agent. I ensure our sales development AI practices remain ethical, compliant, and respectful of prospect privacy. What aspect of responsible AI would you like to explore?",
         timestamp: new Date()
+      },
+      {
+        id: '2',
+        sender: 'user',
+        content: "We're expanding our outreach into Europe. What privacy considerations do we need to be aware of?",
+        timestamp: new Date(Date.now() - 40000)
+      },
+      {
+        id: '3',
+        sender: 'agent',
+        content: "Expanding outreach to Europe involves several critical privacy considerations, primarily around GDPR compliance. Here's what you need to implement:\n\n**1. Legal Basis for Contact**\n\n- **Required Actions:**\n  - Ensure you have a lawful basis for initial contact (legitimate interest most common for B2B)\n  - Document your legitimate interest assessment for each campaign\n  - Create a Prospects Rights Policy document\n\n- **Practical Implementation:**\n  - Add GDPR-compliant language to email footers\n  - Store consent receipts in your CRM\n  - Set up processes to handle right to access/delete requests\n\n**2. Data Minimization & Purpose Limitation**\n\n- **Required Actions:**\n  - Collect only necessary business contact information\n  - Clearly define and limit data usage purposes\n  - Implement data retention policies (typically 12-24 months for prospects)\n\n- **Technical Controls:**\n  - Automatic data purging for inactive prospects older than retention period\n  - Limit prospect data visible to SDRs to necessary fields only\n\n**3. Transparency Requirements**\n\n- **Required Disclosures:**\n  - Identity of your company\n  - Purpose of communication\n  - Source of their contact information\n  - How to opt-out of communications\n\n- **Implementation Examples:**\n```\nYour data: We found your business contact on LinkedIn. View our privacy policy at example.com/privacy or reply \"unsubscribe\" to opt out.  \n```\n\n**4. Cross-Border Transfer Considerations**\n\n- **Required Actions:**\n  - Ensure your CRM and email platforms have EU-approved data transfer mechanisms\n  - Document data flows between EU and non-EU systems\n  - Consider Standard Contractual Clauses for your vendor agreements\n\n**5. AI-Specific Considerations**\n\n- **Required Controls:**\n  - Transparency about AI-assistance in communications\n  - Human review of AI-generated outreach to high-risk sectors\n  - Training datasets should exclude any illegitimately obtained contact data\n\nWould you like me to help you create a GDPR-compliant outreach template for European prospects?",
+        timestamp: new Date(Date.now() - 10000)
       }
+    ],
+    questions: [
+      "How do we ensure compliance with privacy regulations?",
+      "What ethical considerations apply to AI-assisted outreach?",
+      "How do we maintain transparency with prospects?",
+      "What data practices should we follow for responsible use?"
     ]
   },
-  '22': {
-    id: 'loan-doc-demo',
-    title: 'Loan Document Collection Demo',
-    description: 'Explore how our Loan Document Collection Agent manages required documentation',
-    questions: [
-      'What documents do I need for a mortgage application?',
-      'Upload my income verification documents',
-      'Check the status of my submitted documents',
-      'Do I need to provide additional documentation?'
-    ],
+  
+  // Default for other agents
+  'default': {
+    title: 'AI Assistant Demo',
     initialMessages: [
       {
-        id: 'loan-doc-1',
+        id: '1',
         sender: 'agent',
-        content: 'Welcome to the Loan Document Collection demo. I manage the collection and verification of all documentation required for loan processing. I can help you understand what documents are needed, guide you through the submission process, and track your document status. How can I assist you today?',
+        content: "Welcome to the AI assistant demo. I'm here to help with your sales development needs. What can I assist you with today?",
         timestamp: new Date()
-      }
-    ]
-  },
-  '23': {
-    id: 'loan-kyc-demo',
-    title: 'Loan KYC Verification Demo',
-    description: 'See how our Loan KYC Verification Agent handles identity verification for loans',
-    questions: [
-      'What identity verification is needed for my loan?',
-      'Verify this borrower\'s identity documents',
-      'Run a compliance check on this applicant',
-      'What are the verification requirements for co-signers?'
-    ],
-    initialMessages: [
+      },
       {
-        id: 'loan-kyc-1',
-        sender: 'agent',
-        content: 'Welcome to the Loan KYC Verification demo. I manage identity verification and anti-money laundering checks specifically for loan applications. I can help verify borrower identities, screen for compliance issues, and ensure all regulatory requirements are met. How can I assist with your loan verification needs today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '24': {
-    id: 'underwriting-demo',
-    title: 'Underwriting Demo',
-    description: 'See how our Underwriting Agent evaluates loan applications',
-    questions: [
-      'Evaluate this loan application',
-      'What factors are considered in the credit decision?',
-      'Why was this application flagged for review?',
-      'Explain the risk assessment for this applicant'
-    ],
-    initialMessages: [
+        id: '2',
+        sender: 'user',
+        content: "How can you help our SDR team be more productive?",
+        timestamp: new Date(Date.now() - 50000)
+      },
       {
-        id: 'underwriting-1',
+        id: '3',
         sender: 'agent',
-        content: 'Welcome to the Underwriting demo. I evaluate loan applications for creditworthiness and risk assessment using advanced analytics. I analyze credit history, income, debt ratios, and other factors to determine loan eligibility and terms. What would you like me to explain about the underwriting process?',
-        timestamp: new Date()
+        content: "I can help your SDR team dramatically improve productivity in several key areas:\n\n**1. Research & Targeting Automation**\n- Instantly enrich lead data with relevant firmographic and technographic details\n- Create prioritized prospect lists based on your ideal customer profile\n- Identify buying signals and intent data to focus on high-potential accounts\n\n**2. Personalized Outreach at Scale**\n- Draft highly personalized emails tailored to specific personas and industries\n- Create multi-channel sequences across email, LinkedIn, and phone\n- Optimize messaging based on data-driven insights about what works\n\n**3. Process Optimization**\n- Analyze your team's performance to identify areas for improvement\n- Provide coaching based on patterns from top performers\n- Suggest optimal outreach timing based on engagement analysis\n\n**4. Knowledge Acceleration**\n- Instantly access product information, competitor details, and talk tracks\n- Get real-time suggestions for handling objections\n- Identify relevant case studies and content for each prospect\n\nSDR teams using AI assistance typically see:\n- 40-60% reduction in research time\n- 25-35% increase in response rates\n- 15-30% more meetings booked\n- 20-40% faster ramp time for new SDRs\n\nWould you like me to show you a specific example of how this works for a particular part of your SDR workflow?",
+        timestamp: new Date(Date.now() - 25000)
       }
-    ]
-  },
-  '25': {
-    id: 'commitment-demo',
-    title: 'Conditional Commitment Demo',
-    description: 'Experience how our Conditional Commitment Agent manages loan approvals',
-    questions: [
-      'Generate a conditional approval letter',
-      'What conditions are required for final approval?',
-      'Update this application with new conditions',
-      'Verify if all conditions have been satisfied'
     ],
-    initialMessages: [
-      {
-        id: 'commitment-1',
-        sender: 'agent',
-        content: 'Welcome to the Conditional Commitment demo. I generate and manage conditional loan approvals based on underwriting decisions and requirements. I can help create approval letters, track conditions, and verify when all requirements have been met. How can I assist with your conditional commitment needs today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '26': {
-    id: 'loan-process-demo',
-    title: 'Loan Processing Demo',
-    description: 'Experience how our Loan Processing Agent manages the loan workflow',
     questions: [
-      'Track the status of my loan application',
-      'Generate a conditional approval letter',
-      'Schedule the loan closing',
-      'What are the final steps before funding?'
-    ],
-    initialMessages: [
-      {
-        id: 'loan-process-1',
-        sender: 'agent',
-        content: 'Welcome to the Loan Processing demo. I manage the entire loan processing workflow from conditional commitment to closing. I coordinate documentation, verifications, and stakeholder communications to ensure an efficient loan closing process. How can I assist with your loan processing needs today?',
-        timestamp: new Date()
-      }
-    ]
-  },
-  '27': {
-    id: 'closing-demo',
-    title: 'Loan Closing Demo',
-    description: 'See how our Loan Closing Agent manages the final loan closing process',
-    questions: [
-      'Schedule my loan closing appointment',
-      'What documents need to be prepared for closing?',
-      'Review the closing disclosure',
-      'What happens after the closing is complete?'
-    ],
-    initialMessages: [
-      {
-        id: 'closing-1',
-        sender: 'agent',
-        content: 'Welcome to the Loan Closing demo. I coordinate and manage the final loan closing process, including document preparation and signing. I can help schedule appointments, review closing documents, and ensure a smooth closing experience. How can I assist with your loan closing today?',
-        timestamp: new Date()
-      }
+      "What capabilities do you offer?",
+      "How can you help improve our sales process?",
+      "What data do you need to be effective?",
+      "How do you integrate with our existing tools?"
     ]
   }
 };
 
-// Additional agent responses for missing agents
 export const agentResponses: Record<string, Record<string, string>> = {
-  // Customer Onboarding Agent
-  '13': {
-    'Guide me through opening a new checking account': 'I\'d be happy to guide you through opening a new checking account. Here\'s the process:\n\n1. Account Selection:\n   - We offer Essential Checking (no minimum balance, $5 monthly fee)\n   - Premium Checking ($1,500 minimum balance to waive $12 monthly fee)\n   - Premier Relationship Checking ($25,000 combined balance to waive $25 fee)\n\n2. Application Process:\n   - Complete the online application (takes about 10-15 minutes)\n   - Provide personal information (name, address, SSN, employment details)\n   - Verify your identity through our secure system\n\n3. Documentation Requirements:\n   - Government-issued photo ID (driver\'s license, passport, etc.)\n   - Social Security Number or Individual Taxpayer Identification Number\n   - Proof of address (utility bill, lease agreement, etc.)\n\n4. Funding Options:\n   - Initial deposit minimum: $25 for Essential, $100 for Premium, $500 for Premier\n   - Transfer from existing account, debit card, or check deposit\n\n5. Account Access Setup:\n   - Set up online and mobile banking\n   - Choose debit card design\n   - Configure account alerts and notifications\n\nWould you like me to help you start the application process now?',
-    'What documents do I need for a joint account?': 'For a joint checking account, both account holders will need to provide the following documentation:\n\n1. Primary Identification (for both applicants):\n   - Government-issued photo ID (driver\'s license, passport, state ID)\n   - Both IDs must be current and not expired\n\n2. Personal Information (for both applicants):\n   - Social Security Numbers or Individual Taxpayer Identification Numbers\n   - Date of birth\n   - Contact information (phone, email)\n\n3. Address Verification (can be provided by either applicant):\n   - Utility bill dated within the last 60 days\n   - Lease agreement or mortgage statement\n   - Bank or credit card statement\n   - Property tax bill\n\n4. Relationship Verification (for non-spouse joint applicants):\n   - No additional documentation needed for spouses\n   - Business partners may need to provide partnership documentation\n\n5. Employment Information (for both applicants):\n   - Current employer name and address\n   - Income information\n\n6. Initial Deposit Documentation (if applicable):\n   - Source of funds for the initial deposit\n\nBoth applicants will need to be present either in-person at a branch or participate in the online application process. Would you like assistance starting this process?',
-    'How long does the account opening process take?': 'The account opening process typically takes the following timeframes:\n\n1. Online Application:\n   - 10-15 minutes to complete the application form\n   - Instant preliminary approval in most cases\n\n2. In-Branch Application:\n   - 20-30 minutes with a personal banker\n   - Immediate account creation if all documentation is in order\n\n3. Mobile Application:\n   - 8-12 minutes through our mobile app\n   - ID verification using your smartphone camera\n\n4. Account Activation Timeline:\n   - Online/Mobile: Account is typically active within 1 business day\n   - In-Branch: Account is usually active immediately\n\n5. Debit Card Delivery:\n   - Standard mail: 7-10 business days\n   - Express delivery: 2-3 business days (additional fee may apply)\n\n6. Online Banking Access:\n   - Immediate access following account approval\n   - Some features may be limited until your account is fully verified\n\nFactors that may extend this timeline include:\n- Additional verification requirements\n- Technical issues during the application process\n- High application volume periods\n\nApproximately 85% of our online applications are completed and approved on the same day. Is there a specific part of the process you\'re concerned about?',
-    'What are the next steps after my application is approved?': 'After your banking application is approved, here are the next steps in the account activation process:\n\n1. Account Activation (Automatic):\n   - Your account will be activated within 24 hours of approval\n   - You\'ll receive an email confirmation with your account details\n\n2. Welcome Package (7-10 business days):\n   - Debit card(s) for all account holders\n   - Welcome guide with important account information\n   - Personalized starter checks (if requested)\n\n3. Online Banking Setup:\n   - Set up your online banking credentials via our website or mobile app\n   - Create a secure password\n   - Configure security questions and two-factor authentication\n\n4. Debit Card Activation:\n   - Activate your card via phone, online banking, or mobile app\n   - Set your PIN during the activation process\n\n5. Account Funding:\n   - Complete your initial deposit if not done during application\n   - Set up direct deposits with your employer\n\n6. Additional Services Setup:\n   - Enroll in eStatements\n   - Set up bill pay and account alerts\n   - Link external accounts for transfers\n\n7. Account Verification (if applicable):\n   - Verify small test deposits to linked external accounts\n   - Complete any additional verification steps if requested\n\nIs there a specific part of this process you\'d like more information about?'
+  // ICP Assistant
+  '1': {
+    "Which industries should we focus on for our product?": "Based on your solution's capabilities and current market conditions, I recommend focusing on these top 3 industries:\n\n1. **SaaS/Technology** - High digital adoption, clear ROI for your solution\n2. **Financial Services** - Strong budget allocation for your type of solution\n3. **Healthcare Tech** - Growing rapidly with increasing needs for your capabilities\n\nI'd suggest starting with SaaS companies with 100-500 employees that have recently raised Series B or C funding, as they typically have the budget, need, and agility to adopt new solutions quickly.",
+    
+    "What company size range is ideal for our solution?": "For your solution, the sweet spot appears to be mid-market companies with 100-1000 employees. Here's why:\n\n- **100-250 employees**: Organizations at this size are establishing formal processes but lack extensive resources. They have the pain point but may have limited budget.\n\n- **250-500 employees**: This is your primary ICP segment. These companies have the budget, sophisticated enough needs, and aren't too complex for implementation.\n\n- **500-1000 employees**: Secondary ICP with higher deal values but longer sales cycles.\n\nCompanies under 100 employees typically don't have enough complexity to justify your solution, while enterprise (1000+) requires more customization and introduces longer sales cycles.",
+    
+    "How do we identify the right decision makers?": "For your solution, you should target a combination of these key roles:\n\n**Primary decision makers:**\n- VP/Director of Operations (economic buyer, 42% of cases)\n- Head of Revenue Operations (technical evaluator, 37% of cases)\n\n**Important influencers:**\n- Sales Operations Manager (user buyer, critical for adoption)\n- CRO/VP Sales (executive sponsor for larger deals)\n\nLook for signals like:\n- Recent promotion to role (within 3-9 months)\n- Engagement with relevant content topics\n- Prior experience with similar solutions\n- LinkedIn posts about scaling challenges\n\nThe most successful approach is a multi-threaded strategy targeting both the economic buyer and user buyer simultaneously.",
+    
+    "What are the key indicators of a good-fit company?": "Based on analysis of your successful customers, these are the top indicators of a good-fit company:\n\n**Firmographic Signals:**\n- Growth rate: 20%+ year-over-year\n- Recent funding: Series B+ in last 18 months\n- Sales team size: 10+ SDRs/AEs\n\n**Technographic Signals:**\n- CRM: Salesforce or HubSpot (required for integration)\n- Marketing Automation: Active users of Marketo, Pardot, or HubSpot\n- Sales Engagement: Using Outreach, SalesLoft, or similar platforms\n\n**Behavioral Signals:**\n- Hiring for sales/growth roles\n- Recently appointed new CRO/VP Sales\n- Content engagement around scaling sales operations\n\n**Additional Good-fit Indicators:**\n- Multiple product lines/offerings (complexity you solve for)\n- International or multi-region operations\n- Partner/channel sales component\n\nI can help you build a scoring model based on these criteria to prioritize your outreach efforts."
   },
   
-  // Application Processing Agent
-  '14': {
-    'Process this checking account application': 'I\'m analyzing the checking account application for Sarah Johnson...\n\nApplication Analysis Complete:\n\n✅ Personal Information: Complete and verified\n✅ Identity Verification: Complete (Driver\'s License #DL1234567)\n✅ Contact Information: Validated\n✅ Employment Details: Verified with employer database\n✅ Account Selection: Premium Checking\n\n⚠️ Address Verification: Additional documentation needed\n\nAction Required: Please submit a utility bill or lease agreement dated within the last 60 days for address verification. Once received, the application can proceed to final approval.\n\nEstimated Timeline:\n- Current Status: Pending additional documentation\n- Documentation Review: 1 business day after receipt\n- Final Approval: 1-2 business days after documentation verification\n- Account Setup: Immediate upon approval\n- Card Delivery: 7-10 business days\n\nWould you like me to send a reminder request for the needed documentation?',
-    'What information is missing from this application?': 'I\'ve analyzed the current application and identified the following missing or incomplete information that\'s required to proceed:\n\n1. Secondary ID Verification (Required):\n   - Either a passport number, state ID, or military ID is needed\n   - Current application only includes driver\'s license\n\n2. Income Verification (Required):\n   - Annual income amount is entered but source not specified\n   - Need to indicate: employment, self-employment, retirement, etc.\n   - Employment section is incomplete (missing start date)\n\n3. Initial Deposit Details (Required):\n   - Method of initial deposit not selected\n   - Amount entered ($2,500) but funding source not specified\n\n4. Electronic Disclosure Consent (Required):\n   - Acknowledgment checkbox for electronic communications not selected\n\n5. Beneficiary Information (Optional but Recommended):\n   - No beneficiary information provided\n   - While optional, we recommend adding at least one account beneficiary\n\nThe application is approximately 85% complete. Would you like to provide the missing information now, or would you like me to save this application as a draft so you can complete it later?',
-    'Verify the application status': 'Application Status Report\nApplication #APP-2025-78542\nApplicant: Michael Rodriguez\nProduct: Premier Checking Account\nSubmission Date: June 8, 2025, 3:45 PM ET\n\nCurrent Status: IN REVIEW (Stage 2 of 4)\n\nCompleted Stages:\n✓ Stage 1: Initial Submission - Completed on June 8, 2025\n• Application form submitted successfully\n• Initial automated verification checks passed\n\nCurrent Stage:\n→ Stage 2: Document Verification - In Progress\n• Identity documents verified on June 9, 2025\n• Address verification pending (documents received, under review)\n• Employment verification in progress (employer contacted)\n\nUpcoming Stages:\nStage 3: Final Review & Decision\n• Credit history check\n• Internal approval process\n• Risk assessment\n\nStage 4: Account Setup & Provisioning\n• Account number generation\n• Card issuance\n• Welcome package preparation\n\nEstimated Completion Timeline: 1-2 business days\nLast Update: June 9, 2025, 10:30 AM ET\n\nAction Items:\n• None required from applicant at this time\n\nWould you like me to notify you when the application moves to the next stage?',
-    'What\'s the timeline for application approval?': 'Here\'s our standard timeline for checking account application approval and setup:\n\n1. Initial Application Submission:\n   • Online/Mobile: Immediate acknowledgment\n   • Paper/Branch: Same-day processing\n\n2. Identity Verification: 1 business day\n   • Government ID verification\n   • Social Security Number validation\n   • Address verification\n\n3. Background Screening: 1-2 business days\n   • ChexSystems review\n   • Internal risk assessment\n   • Compliance checks\n\n4. Application Decision: Typically by end of day 2\n   • Standard applications: 90% complete within 2 business days\n   • Complex applications: May require up to 5 business days\n   • Applications with exceptional circumstances: Timeline provided case-by-case\n\n5. Account Setup (After Approval): Same day to 1 business day\n   • Account number generation\n   • Initial system configuration\n   • Service enrollment processing\n\n6. Card Production & Delivery: 7-10 business days\n   • Express delivery available (2-3 business days) for additional fee\n\n7. Welcome Package Delivery: 7-10 business days\n\nFor your specific application, based on the information provided, we expect a decision by the end of tomorrow (assuming no additional information is required). Would you like me to set up a notification to alert you when your application status changes?'
-  },
-
-  // Activation Agent
-  '19': {
-    'Activate my new debit card': 'I\'ll help you activate your new debit card. Please follow these steps:\n\n1. Card Verification:\n   - Locate your 16-digit card number on the front of your new debit card\n   - Confirm the card is signed on the back\n   - Have your account number or username ready\n\n2. Choose your activation method:\n\nOption A: Online Activation (Fastest Method)\n   - Log in to online banking at bankingsuperagent.com\n   - Go to "Cards" section\n   - Select "Activate New Card"\n   - Enter the card number and expiration date\n   - Create your PIN when prompted\n\nOption B: Mobile App Activation\n   - Open our banking app on your smartphone\n   - Navigate to "Card Management"\n   - Tap "Activate Card"\n   - You can scan the card with your camera or enter details manually\n   - Set your PIN within the app\n\nOption C: Phone Activation\n   - Call our automated system at 1-800-555-1234\n   - Press 1 for card activation\n   - Enter your card number when prompted\n   - For security, you\'ll need to enter:\n     • Your ZIP code\n     • Last 4 digits of your SSN\n   - Create your 4-digit PIN\n\nYour card will be activated immediately after completing these steps. Would you like me to help you with any specific activation method?',
-    'Set up my online banking access': 'I\'ll guide you through setting up your online banking access. Here\'s the step-by-step process:\n\n1. Registration:\n   - Visit bankingsuperagent.com and click "First Time User? Enroll Now"\n   - Or download our mobile app and tap "Register"\n\n2. Identity Verification (You\'ll need):\n   - Your account number or debit card number\n   - Social Security Number (last 4 digits)\n   - Date of birth\n   - ZIP code associated with your account\n\n3. Create Credentials:\n   - Choose a username (8-30 characters, no spaces)\n   - Create a strong password (meeting these requirements):\n     • 8-32 characters long\n     • At least one uppercase letter\n     • At least one lowercase letter\n     • At least one number\n     • At least one special character\n   - Set up security questions (select 3 from our options)\n\n4. Contact Information Verification:\n   - Confirm your email address and phone number\n   - Choose your contact preference for alerts and notifications\n\n5. Two-Factor Authentication Setup:\n   - Select your preferred verification method:\n     • Text message\n     • Email\n     • Authentication app\n   - Follow the prompts to set up your selected method\n\n6. Terms & Conditions:\n   - Review and accept the Online Banking Agreement\n   - Set your electronic statement preferences\n\n7. Additional Services Configuration (Optional):\n   - External account linking\n   - Bill pay setup\n   - Alert preferences\n\nAfter completing these steps, you\'ll have immediate access to your accounts online. Would you like me to provide more details about any specific part of this process?',
-    'Authorize my mobile device for banking': 'I\'ll help you authorize your mobile device for banking. Here\'s how to complete the process:\n\n1. Download the App:\n   - Go to the App Store (iOS) or Google Play Store (Android)\n   - Search for "Banking SuperAgent Mobile"\n   - Download and install the official app\n\n2. Initial Setup:\n   - Open the app and tap "Get Started"\n   - Select "I\'m already a customer"\n\n3. Account Access:\n   - Enter your existing online banking username\n   - Enter your password\n   - Tap "Sign In"\n\n4. Device Registration:\n   - The system will detect you\'re signing in from a new device\n   - You\'ll receive a one-time security code via your pre-selected method (text, email, or phone call)\n   - Enter the security code in the app when prompted\n\n5. Device Authorization:\n   - Create a device nickname (e.g., "Personal iPhone")\n   - Set up biometric authentication if supported (fingerprint or face recognition)\n   - Create a 4-6 digit mobile passcode for app access\n\n6. Security Preferences:\n   - Select whether to enable automatic sign-in (using biometrics)\n   - Choose whether to receive push notifications\n   - Configure transaction alert preferences\n\n7. Confirmation:\n   - Review and accept the Mobile Banking Agreement\n   - Confirm your device registration\n\nYour device will now be authorized for mobile banking and you\'ll be able to access all your accounts securely. Do you have any questions about any of these steps, or would you like help with a specific part of the process?',
-    'Troubleshoot activation issues': 'I\'ll help you troubleshoot your activation issues. Let\'s identify and resolve the problem with these common solutions:\n\n1. Online Banking Activation Issues:\n\n   ✔️ Username/Password Problems:\n   - Ensure Caps Lock is off\n   - Try the "Forgot Username/Password" option\n   - Check for special characters that may not be allowed\n   - Clear browser cache and cookies\n\n   ✔️ Security Verification Failures:\n   - Confirm you\'re using the contact information on file with the bank\n   - Ensure your account isn\'t locked (after multiple failed attempts)\n   - Try a different verification method if available\n\n2. Debit Card Activation Issues:\n\n   ✔️ Card Not Recognized:\n   - Double-check the card number for accuracy\n   - Verify the card is not expired or damaged\n   - Confirm you\'re activating the newest card received\n\n   ✔️ Verification Failures:\n   - Ensure you\'re using the ZIP code on file with the bank\n   - Verify the last 4 digits of your SSN\n   - Check if your account has any restrictions or holds\n\n3. Mobile Banking Activation Issues:\n\n   ✔️ App Installation Problems:\n   - Ensure your device meets minimum requirements\n   - Check your internet connection\n   - Update your device\'s operating system\n\n   ✔️ Security Code Not Received:\n   - Verify your phone number or email on file is correct\n   - Check your spam/junk folder for emails\n   - Ensure your phone can receive SMS messages\n\n4. When to Contact Support:\n\n   - After 3 failed activation attempts\n   - If your account shows as "Locked"\n   - If you\'ve recently changed your phone number or address\n   - If you\'re receiving error messages not addressed above\n\nFor personalized troubleshooting, can you tell me which specific service you\'re having trouble activating, and what error message you\'re receiving?'
+  // Lead Enrichment
+  '2': {
+    "How can we enrich our lead data most effectively?": "For maximum enrichment effectiveness, I recommend a layered approach:\n\n1. **Foundational Data (Tier 1):**\n   - Company: Size, industry, location, revenue\n   - Contact: Title, department, seniority, reporting structure\n   - Technology: Current tech stack relevant to your solution\n\n2. **Engagement Data (Tier 2):**\n   - Intent signals: Content consumption, research behavior\n   - Social activity: LinkedIn engagement, posts, comments\n   - Event participation: Webinars, conferences\n\n3. **Predictive Data (Tier 3):**\n   - Growth signals: Hiring patterns, funding, expansion\n   - Competitive dynamics: Vendor switches, contract renewals\n   - Buying committee mapping\n\n**Recommended Data Providers:**\n- ZoomInfo + Clearbit for foundational data (highest accuracy)\n- Bombora for intent data\n- 6sense for predictive insights\n\nYou should refresh this data on different schedules: Tier 1 quarterly, Tier 2 monthly, and Tier 3 weekly for the most active prospects.",
+    
+    "What intent signals should we look for in our target accounts?": "The most predictive intent signals for your solution category are:\n\n**High Intent (Immediate Outreach Priority):**\n- Researching your specific competitors (indicates active buying cycle)\n- Consuming content on implementation methodologies (late-stage intent)\n- Multiple stakeholders researching relevant topics\n- Job postings for roles your solution would support\n\n**Medium Intent (24-48 Hour Outreach):**\n- Research on pain points your product solves\n- Technology review activity (evaluation stage)\n- Industry-specific solution research\n\n**Early Intent (Nurture Campaign):**\n- General category education content\n- Related topic consumption\n- Early-stage problem identification content\n\nI'd recommend configuring your intent data provider to track these specific topics and setting up automated alerts for high-intent signals to trigger immediate outreach by your SDR team.",
+    
+    "Which enrichment sources provide the most accurate data?": "Based on comparative accuracy analysis across data providers for your specific target market:\n\n**Company Data Accuracy:**\n1. ZoomInfo (92% accuracy) - Best for company size, revenue\n2. Clearbit (89% accuracy) - Best for technographics\n3. Crunchbase (85% accuracy) - Best for funding data\n\n**Contact Data Accuracy:**\n1. LinkedIn Sales Navigator (94% accuracy) - Best for titles, roles\n2. ZoomInfo (88% accuracy) - Best for direct dials\n3. Lusha (84% accuracy) - Good value for email verification\n\n**Intent Data Quality:**\n1. Bombora (78% signal relevance) - Widest B2B coverage\n2. G2 (92% accuracy but limited scope) - Highly specific but narrower\n3. 6sense (83% relevance) - Best for anonymous visitor identification\n\nI recommend a hybrid approach: Use ZoomInfo as your primary source, supplement with LinkedIn Sales Navigator for contact validation, and layer in Bombora for intent signals. This combination provides the best balance of accuracy and coverage for your target market.",
+    
+    "How can we verify contact information at scale?": "Here's a comprehensive strategy for contact verification at scale:\n\n1. **Multi-tier Verification Process**\n   - First pass: Email syntax validation (immediate)\n   - Second pass: Domain verification (immediate)\n   - Third pass: Email ping verification (batched)\n   - Fourth pass: AI pattern recognition for suspected role-based emails\n\n2. **Frequency & Timing**\n   - Verify contacts immediately upon import\n   - Re-verify contacts older than 90 days before campaign inclusion\n   - Implement verification triggers (job changes, company news)\n\n3. **Tool Recommendations**\n   - Primary: NeverBounce (98.2% accuracy in your industry)\n   - Secondary: Clearout (cost-effective for bulk verification)\n   - Verification API: Connect directly to your CRM\n\n4. **Process Optimization**\n   - Use pattern matching for pre-verification\n   - Implement progressive profiling in forms\n   - Deploy fallback verification for critical accounts\n\nWith this approach, you can achieve >95% deliverability while maintaining a verification cost of <$0.03 per contact."
   },
   
-  // Customer Education Agent
-  '20': {
-    'Explain how overdraft protection works': 'Overdraft protection helps you avoid declined transactions, returned items, and overdraft fees when you don\'t have sufficient funds in your checking account. Here\'s how our overdraft protection options work:\n\n1. Linked Account Transfer\n   • How it works: Automatically transfers funds from a linked savings account, secondary checking, or money market account when your checking account would otherwise overdraw\n   • Cost: $10 per transfer (regardless of transfer amount)\n   • Benefits: Uses your own funds, potentially lower fees than standard overdraft\n   • Setup: Can be established through online banking or by calling customer service\n\n2. Overdraft Line of Credit\n   • How it works: A pre-approved credit line that provides funds when your account would otherwise overdraw\n   • Cost: Interest charges (currently 18% APR) on the borrowed amount until repaid, plus $5 annual fee\n   • Benefits: Continuous protection up to your approved credit limit\n   • Requirements: Credit approval required, minimum credit score of 640\n   • Repayment: Minimum monthly payment of $25 or 5% of outstanding balance, whichever is greater\n\n3. Standard Overdraft Coverage\n   • How it works: Bank may choose to pay transactions even when your account doesn\'t have sufficient funds\n   • Cost: $35 overdraft fee per item (maximum of 4 fees per day)\n   • Coverage: Applies to checks, ACH transactions, and recurring debit card transactions\n   • Limitations: Does not cover ATM withdrawals or one-time debit card transactions unless you opt in\n\n4. Opt-In Debit Card Coverage\n   • How it works: Extends overdraft coverage to ATM withdrawals and one-time debit card transactions\n   • Cost: Same $35 fee per overdraft item\n   • Choice: This coverage is optional - you must explicitly opt in\n\nImportant Notes:\n   • Overdrafts must be repaid within 7 business days to avoid extended overdraft fees\n   • You can set up balance alerts to help avoid overdrafts\n   • You can opt out of overdraft coverage at any time\n\nWould you like more information about how to set up any of these overdraft protection options?',
-    'What security features should I enable?': 'To maximize the security of your banking accounts, I recommend enabling these essential security features:\n\n1. Multi-Factor Authentication (MFA)\n   • What it is: Requires two or more verification methods to access your account\n   • How to enable: Settings → Security → Multi-Factor Authentication\n   • Options: Text message codes, email codes, authentication app, or security keys\n   • Recommendation: Authentication app provides the strongest security\n\n2. Biometric Authentication\n   • What it is: Uses your fingerprint, face, or voice for quick, secure access\n   • How to enable: Mobile app → Settings → Sign In Options → Enable Biometrics\n   • Compatibility: Requires supported device (most modern smartphones)\n   • Benefit: Convenient and highly secure access method\n\n3. Account Alerts\n   • Types to enable:\n     - Large transaction alerts (set your threshold, e.g., $500+)\n     - Sign-in alerts for new devices\n     - International transaction notifications\n     - Balance threshold alerts\n     - Password or contact information change alerts\n   • How to enable: Settings → Notifications → Banking Alerts\n\n4. Debit Card Controls\n   • Features:\n     - Instantly lock/unlock your card\n     - Set geographic restrictions\n     - Control merchant categories\n     - Set spending limits\n     - Enable/disable online transactions\n   • How to enable: Card Management → Security Controls\n\n5. Enhanced Password Settings\n   • Requirements: Set up a strong, unique password for your banking\n   • Enable: Periodic password changes (every 90 days recommended)\n   • How to change: Settings → Security → Password Management\n\n6. Secure Contact Information\n   • Importance: Ensures security codes and alerts reach you\n   • Update: Verify and update phone numbers and email addresses\n   • How to update: Profile → Personal Information\n\n7. Device Management\n   • What it does: Shows all devices accessing your account\n   • Action: Remove any unrecognized or unused devices\n   • How to access: Settings → Security → Registered Devices\n\nWould you like me to help you enable any of these security features right now?',
-    'How can I maximize rewards on my account?': 'Here are comprehensive strategies to maximize rewards on your banking accounts:\n\n1. Choose the Right Account Type\n   • Premium Rewards Checking: Earn 2x points on all debit purchases\n   • Relationship Banking Package: Extra 25% points when linking multiple accounts\n   • Business Rewards Banking: Higher earning rates for business expenses\n\n2. Everyday Banking Strategies\n   • Set up direct deposit: +500 bonus points monthly with $2,500+ deposit\n   • Use bill pay for all utilities: 10 points per payment\n   • Set up recurring transfers to savings: 25 points per monthly transfer\n   • Maintain minimum balance requirements: 100 points monthly bonus\n   • Use your debit card for purchases: 1 point per $2 spent\n\n3. Digital Banking Rewards\n   • Enroll in paperless statements: 150 one-time bonus points\n   • Use mobile deposit: 5 points per check deposited\n   • Set up account alerts: 50 one-time bonus points\n   • Use online budgeting tools: 25 monthly points\n\n4. Credit Card Coordination\n   • Link bank credit card to checking: 50% bonus on all credit card rewards\n   • Set up automatic credit card payments: 15 points monthly\n   • Strategic usage: Use debit for small purchases, credit for larger ones\n\n5. Promotional Opportunities\n   • Seasonal promotions: Watch for 2x or 3x points periods (typically holidays)\n   • Merchant-specific offers: Check monthly featured retailers\n   • Referral bonuses: 1,000 points per successful referral\n   • Anniversary bonus: 500 points on account anniversary\n\n6. Points Redemption Optimization\n   • Travel redemptions: Typically highest value (1 point = 1.5¢)\n   • Gift card promotions: Periodically discounted redemption rates\n   • Statement credits: Most flexible but lower value (1 point = 1¢)\n   • Merchandise: Generally lowest value (1 point = 0.7¢)\n\n7. Avoiding Point Erosion\n   • Watch for expiration: Points expire after 24 months of inactivity\n   • Fee avoidance: Monthly maintenance fees reduce effective reward value\n   • Minimum redemption threshold: Save points for at least 5,000 point redemptions for best value\n\nWould you like more information about any specific rewards strategy?',
-    'Show me how to use mobile check deposit': 'Here\'s a complete guide to using mobile check deposit in our banking app:\n\n1. Initial Setup Requirements\n   • Download and install the latest version of our mobile app\n   • Ensure you\'re logged in with your username and password\n   • Your account must be in good standing (no restrictions)\n   • Mobile deposit must be enabled (automatic for most accounts)\n\n2. Before You Begin: Check Preparation\n   • Endorse the back of the check with your signature\n   • Write "For Mobile Deposit Only" below your signature\n   • Make sure the check is payable to you and not post-dated\n   • Verify the check amount, date, and that it\'s properly signed\n\n3. Step-by-Step Deposit Process\n   • Open the mobile app and select "Deposit" from the bottom menu\n   • Choose the account where you want to deposit the check\n   • Enter the check amount (double-check for accuracy)\n   • Take photos of the check (front and back)\n\n4. Check Photography Tips\n   • Use a dark, non-reflective background\n   • Ensure good lighting (avoid shadows)\n   • Position the check within the on-screen guides\n   • Hold your phone steady (or place it on a surface)\n   • Make sure all four corners are visible\n   • Ensure the check is flat (not folded or crumpled)\n\n5. After Taking Photos\n   • Verify the images are clear and readable\n   • Confirm the deposit details\n   • Submit the deposit\n   • You\'ll receive an on-screen confirmation\n   • Keep the physical check until funds clear\n\n6. Tracking Your Deposit\n   • Check status in the "Deposit History" section\n   • Status will show: Pending, Accepted, or Rejected\n   • Typically processed within 1-2 business days\n   • First $225 available next business day\n   • Remaining funds available in 2-3 business days\n\n7. Important Limitations\n   • Daily deposit limit: $5,000\n   • Monthly deposit limit: $10,000\n   • Individual check limit: $5,000\n   • Not accepted: Foreign checks, money orders, third-party checks\n\nWould you like me to walk you through the mobile check deposit process with visual guidance?'
+  // Email Assistant 
+  '4': {
+    "How can we improve our email open rates?": "Based on your current campaign data, here are the top strategies to improve open rates:\n\n**Subject Line Optimization:**\n- Use 4-7 word subject lines (your best performers average 5.3 words)\n- Include either specificity or curiosity gap, not both\n- Remove all buzzwords and jargon\n- Top-performing formats: question, statistic, personalized insight\n\n**Send Time Optimization:**\n- For your C-suite prospects: Tuesday/Wednesday 6:30-8:00am\n- For Directors/VPs: Tuesday/Thursday 10:00-11:00am\n- For Managers: Wednesday/Thursday 2:00-3:30pm\n\n**Personalization Elements:**\n- Reference specific company events in subject line (+42% open rate)\n- Include prospect's company name in subject line (+18% open rate)\n- Avoid first name in subject line for cold outreach (-8% open rate)\n\n**Technical Improvements:**\n- Set up DKIM/SPF/DMARC records (reduces spam filtering)\n- Warm up new sending domains gradually\n- Segment sending domains by prospect industry\n\nImplementing these changes should increase your average open rate from current 22% to 30-35% within 30 days.",
+    
+    "What subject lines are performing best right now?": "Here's an analysis of your top-performing subject lines by category based on the last 90 days of data:\n\n**Question Format (38.4% average open rate):**\n- \"Quick question about {Company}'s approach to {relevant process}?\"\n- \"Have you considered this for {Company's} {department}?\"\n\n**Personalized Insight (37.2% average open rate):**\n- \"Noticed {Company} recently {specific event or news}\"\n- \"Thoughts on {Company's} approach to {industry challenge}\"\n\n**Value-Driven (35.8% average open rate):**\n- \"{Specific metric} improvement for companies like {Company}\"\n- \"How {similar companies} are addressing {specific pain point}\"\n\n**Contrarian/Pattern Interrupt (34.1% average open rate):**\n- \"Contrary to popular belief about {industry topic}\"\n- \"The problem with most {industry} approaches\"\n\n**Poorly Performing Approaches:**\n- Generic benefit statements (18.2% open rate)\n- \"Checking in\" or \"Following up\" (12.1% open rate)\n- Long, feature-focused subjects (16.5% open rate)\n\nI recommend A/B testing variations of the top two categories with your next campaign.",
+    
+    "Help me craft a follow-up email for a prospect who went cold": "Here's a tailored follow-up email for re-engaging a cold prospect:\n\n```\nSubject: Still worth a conversation, {FirstName}?\n\nHi {FirstName},\n\nI noticed we haven't connected since my last message about {brief value proposition}.\n\nThere could be many reasons – perhaps the timing wasn't right, priorities shifted, or my message didn't address your specific challenges around {specific pain point relevant to role}.\n\nRecently, I helped {similar company} achieve {specific result} by {brief explanation of how}. They were facing similar challenges with {pain point}.\n\nWould it make sense to have a quick 15-minute call to explore if we could deliver similar results for {Company}? If not, would you mind sharing what changed or where I missed the mark?\n\n{standard signature with calendar link}\n\nP.S. If this isn't relevant anymore, just let me know, and I'll close this thread.\n```\n\nThis template works because it:\n1. Uses a direct subject line that prompts a decision\n2. Acknowledges the silence without being accusatory\n3. Provides fresh value through a relevant customer story\n4. Offers a clear, low-commitment next step\n5. Makes it easy to say no (which often increases response rates)\n\nFor best results, personalize the {similar company} and {specific result} with actual data relevant to the prospect's industry and role.",
+    
+    "What's the ideal length for a cold outreach email?": "Based on analysis of over 25,000 cold emails, the ideal length varies by prospect seniority and outreach stage:\n\n**C-Suite Executives:**\n- Optimal length: 50-75 words\n- Format: 2-3 short paragraphs\n- Key elements: Direct value statement, social proof, clear CTA\n- Above 100 words sees a 38% drop in response rate\n\n**Directors and VPs:**\n- Optimal length: 75-125 words\n- Format: 3-4 paragraphs with bullets for scanning\n- Key elements: Personalization, problem statement, proof point\n- Response rates highest with 1-2 specific questions included\n\n**Managers/Individual Contributors:**\n- Optimal length: 100-150 words\n- Format: More detailed with clear section breaks\n- Key elements: Specific value metrics, role-relevant challenges\n\n**Cold Email Template Structure (75-125 words):**\n- Opening: 1 sentence personalized hook (15-20 words)\n- Problem: 1-2 sentences on relevant challenge (25-30 words)\n- Solution/Value: 1-2 sentences with clear value (25-30 words)\n- CTA: 1 clear, simple next step (15-20 words)\n\nRemember to focus on value-to-word ratio rather than just word count. Every sentence should earn its place in the email with a clear purpose."
   },
   
-  // Conditional Commitment Agent
-  '25': {
-    'Generate a conditional approval letter': 'I\'ve generated a conditional approval letter for loan application #L-8763-225:\n\n------------------------------------------------\nBANKING SUPERAGENT\n123 Financial Avenue\nMetro City, ST 12345\n\nJune 10, 2025\n\nMr. Robert & Mrs. Lisa Chen\n789 Homestead Lane\nSpringfield, ST 54321\n\nRE: CONDITIONAL MORTGAGE LOAN APPROVAL\nLoan Application #L-8763-225\nProperty: 456 Willow Street, Springfield, ST 54321\n\nDear Mr. and Mrs. Chen,\n\nCongratulations! Banking SuperAgent is pleased to inform you that your application for a 30-year fixed-rate mortgage loan has been conditionally approved with the following terms:\n\n• Loan Amount: $425,000\n• Interest Rate: 4.125% (locked until 07/25/2025)\n• Loan Term: 30 years\n• Monthly Principal & Interest: $2,058.54\n• Estimated Monthly Escrow: $583.21 (taxes and insurance)\n• Estimated Total Monthly Payment: $2,641.75\n\nThis approval is subject to the following conditions that must be satisfied before final loan approval and closing:\n\n1. Property Conditions:\n   • Satisfactory appraisal supporting minimum value of $531,250\n   • Clean title report with no unacceptable encumbrances\n   • Satisfactory property inspection\n\n2. Financial Conditions:\n   • Verification of employment within 10 days of closing\n   • Most recent 30 days of pay stubs\n   • Source documentation for earnest money deposit\n   • Verification that no new debts have been incurred\n\n3. Insurance Requirements:\n   • Proof of homeowner\'s insurance with minimum coverage of $425,000\n   • Flood insurance certification (if applicable)\n\nPlease provide the requested documentation by June 25, 2025, to ensure on-time closing. This conditional approval is valid until July 25, 2025.\n\nYour loan officer, Sarah Johnson, will be contacting you shortly to review these conditions and answer any questions. She can be reached at (555) 123-4567 or sjohnson@bankingsuperagent.com.\n\nThank you for choosing Banking SuperAgent for your mortgage needs.\n\nSincerely,\n\nMichael Williams\nSenior Mortgage Underwriter\nNMLS# 987654\n------------------------------------------------\n\nWould you like me to explain any of the conditions in more detail or assist with gathering the required documentation?',
-    'What conditions are required for final approval?': 'For loan application #L-2025-42789, the following conditions must be satisfied before final loan approval:\n\n1. Income Verification Conditions:\n   • Employment verification for all borrowers (completed for primary borrower, pending for co-borrower)\n   • Two most recent pay stubs for co-borrower (dated within 30 days)\n   • Written explanation for employment gap from March-July 2024\n   • Proof of bonus income mentioned in application (award letter or equivalent)\n\n2. Asset Documentation Conditions:\n   • Two months of complete bank statements for checking account #XXXX8743 (all pages)\n   • Source documentation for $45,000 deposit on 5/12/2025\n   • Gift letter documentation for $30,000 down payment contribution\n   • Evidence of liquidation of mutual funds listed as down payment source\n\n3. Property Conditions:\n   • Clear property appraisal (completed, no additional conditions)\n   • ✓ Title search (completed and clear)\n   • Proof of homeowner\'s insurance with first year premium paid\n   • Flood zone determination (in process)\n   • Wood-destroying organism inspection\n\n4. Credit Conditions:\n   • Written explanation for credit inquiry from Capital One on 5/23/2025\n   • Documentation for lease buyout shown on credit report\n   • ✓ Updated credit score verification (completed)\n\n5. Legal/Regulatory Conditions:\n   • Signed Intent to Proceed form\n   • Completed 4506-T form (tax transcript request)\n   • ✓ Signed disclosure documents (completed)\n   • Valid government-issued photo ID for both borrowers\n\nPriority Conditions (needed within 5 business days):\n• Co-borrower pay stubs\n• Bank statements\n• Source documentation for large deposit\n• Gift letter documentation\n\nAll other conditions are needed by June 30, 2025, to maintain your closing date of July 15, 2025. Would you like assistance with gathering any of these documents?',
-    'Update this application with new conditions': 'I\'ve updated application #L-9273-184 with the new conditions based on the underwriter\'s review. Here\'s a summary of the changes:\n\nConditions Added:\n\n1. New Income Verification Condition:\n   • Tax returns for 2024 with all schedules and attachments\n   • Reason: Self-employment income verification requirement\n   • Priority: High - needed within 7 business days\n\n2. New Credit Explanation:\n   • Written explanation for new credit card opened with AmEx on 5/28/2025\n   • Copy of credit card statement showing current balance\n   • Reason: New debt not disclosed in original application\n   • Priority: High - needed within 5 business days\n\n3. New Property Condition:\n   • Roof certification from licensed roofer\n   • Estimate for repairs if needed\n   • Reason: Appraiser noted possible roof damage\n   • Priority: Medium - needed within 14 business days\n\nConditions Removed:\n\n1. Employment verification for primary borrower\n   • Reason: Completed and verified on 6/8/2025\n\n2. Bank statements for savings account\n   • Reason: Received and verified on 6/7/2025\n\nConditions Modified:\n\n1. Changed: Proof of funds for closing costs\n   • Original: Most recent statement showing $25,000 available\n   • Updated: Most recent statement showing $32,500 available\n   • Reason: Closing cost estimate increased due to property tax reassessment\n\n2. Changed: Homeowner\'s insurance requirement\n   • Original: Coverage minimum of $300,000\n   • Updated: Coverage minimum of $350,000\n   • Reason: Appraisal value higher than estimated\n\nNotifications:\n• Email sent to borrower with updated condition list\n• Loan processor notified of changes\n• Closing date impact assessment: No impact expected if new conditions met on time\n\nWould you like me to prioritize any specific condition or provide assistance in gathering the required documentation?',
-    'Verify if all conditions have been satisfied': 'Condition Verification Report for Loan #L-2025-38456\nBorrower: James Wilson\nProperty: 123 Maple Street, Riverdale, ST 12345\nLoan Type: Conventional 30-year fixed\nLoan Amount: $385,000\nTarget Closing Date: June 30, 2025\n\nCondition Status Summary:\n✅ Satisfied: 12 conditions\n⏳ Pending Review: 3 conditions\n❌ Outstanding: 2 conditions\n\nDetailed Condition Status:\n\n1. Income Verification (SATISFIED)\n   ✅ Employment verification - Received 6/2, Verified 6/3\n   ✅ Most recent pay stubs - Received 6/2, Verified 6/3\n   ✅ Previous year W-2 - Received 6/2, Verified 6/3\n\n2. Asset Documentation (PARTIALLY SATISFIED)\n   ✅ Bank statements (checking) - Received 6/5, Verified 6/6\n   ✅ Bank statements (savings) - Received 6/5, Verified 6/6\n   ❌ Source of funds for $25,000 deposit - NOT RECEIVED\n   ✅ Retirement account statement - Received 6/8, Verified 6/9\n\n3. Property Documentation (SATISFIED)\n   ✅ Appraisal - Completed 6/4, Approved 6/7\n   ✅ Title search - Completed 6/8, Clear\n   ✅ Homeowner\'s insurance - Received 6/10, Verified 6/10\n\n4. Credit Documentation (PARTIALLY SATISFIED)\n   ✅ Credit explanation letter - Received 6/3, Accepted 6/4\n   ⏳ Updated credit report - Ordered 6/10, Pending Review\n   ✅ Student loan deferment proof - Received 6/9, Verified 6/10\n\n5. Legal Documentation (PARTIALLY SATISFIED)\n   ✅ Signed disclosures - Received 6/2, Complete\n   ⏳ Closing disclosure acknowledgment - Sent 6/10, Pending Return\n   ⏳ Intent to proceed - Received 6/10, Pending Review\n   ❌ Power of attorney document - NOT RECEIVED (if applicable)\n\nOutstanding Items Required for Closing:\n1. Source documentation for $25,000 deposit (bank transfer or gift letter)\n2. Power of attorney document (if you plan to use a POA at closing)\n3. Return of signed closing disclosure acknowledgment\n\nTimeline Impact Assessment:\n• No closing delay expected if outstanding items received by June 23, 2025\n• Current estimated clear-to-close date: June 25, 2025\n\nWould you like me to send a reminder for the outstanding items or help prepare any of the required documentation?'
+  // Meeting Qualifier
+  '12': {
+    "What qualification criteria should we use?": "Based on your solution and market, I recommend this qualification framework:\n\n**Primary Qualification Criteria (Required):**\n\n1. **Fit** (40% of qualification score)\n   - Company size: 250-2,500 employees\n   - Industry: Technology, Financial Services, Healthcare\n   - Annual revenue: $25M-$500M\n   - Technology stack: Using {complementary technologies}\n\n2. **Need** (30% of qualification score)\n   - Experiencing at least 2 of your top 3 pain points\n   - Currently using a competitive or legacy solution\n   - Growth rate >20% (creating scaling challenges)\n\n3. **Authority** (20% of qualification score)\n   - Director+ level for initial meetings\n   - Direct involvement in {relevant process}\n   - Budget ownership or influence\n\n4. **Timing** (10% of qualification score)\n   - Active initiative in related area\n   - Recent trigger event (new leadership, funding)\n   - Contract renewal within 3-6 months\n\n**Implementation Recommendation:**\n- Create a weighted scoring model in CRM (0-100)\n- Auto-route leads scoring 70+ to direct outreach\n- Leads scoring 40-69 to nurture campaigns\n- Below 40 points: deprioritize\n\nThis model has shown 2.4x higher conversion to opportunity in similar organizations.",
+    
+    "How can we identify prospects who are ready for a meeting?": "Here's how to identify meeting-ready prospects using behavioral and contextual signals:\n\n**High-Intent Behavioral Signals (Immediate Outreach):**\n\n1. **Digital Body Language:**\n   - Multiple visits to pricing or product pages (3+ in 7 days)\n   - Bottom-of-funnel content consumption (case studies, comparison guides)\n   - Multiple stakeholders from same company viewing content\n   - Demo request or assessment tool engagement\n\n2. **Engagement Patterns:**\n   - Replied to 2+ emails in a sequence\n   - Engaged with personalized video content (>75% watched)\n   - Asked specific questions about capabilities\n   - Engaged across multiple channels (email + social)\n\n**Contextual Readiness Signals:**\n\n1. **Company Triggers:**\n   - New executive hire in relevant role (past 60 days)\n   - Recent funding announcement (Series B or later)\n   - Reorganization or strategic shift announcements\n   - Implementation of complementary technology\n\n2. **Contact Triggers:**\n   - Job change to decision-making role (past 90 days)\n   - LinkedIn posts about relevant challenges\n   - Engagement with competitor content\n\n**Implementation Actions:**\n- Create trigger-based alert system for sales team\n- Develop a fast-track outreach process for high-intent leads\n- Create a \"meeting ready\" lead stage with automated routing\n\nThis approach typically increases meeting acceptance rates by 3.2x compared to traditional time-based sequences.",
+    
+    "What disqualification signals should we watch for?": "Here are the key disqualification signals that help avoid wasting time on poor-fit opportunities:\n\n**Hard Disqualification Signals (Exit from sequences):**\n\n1. **Firmographic Misfit:**\n   - Company size <50 employees or >10,000 employees\n   - Industries with regulatory barriers to your solution\n   - Geographic regions you cannot service\n   - Annual revenue below minimum threshold for ROI\n\n2. **Technical Blockers:**\n   - Incompatible core systems that prevent integration\n   - Recently signed with direct competitor (past 6 months)\n   - Technical requirements you cannot meet\n\n3. **Explicit Rejection:**\n   - Clear opt-out or \"not interested\" response\n   - Legal/compliance concerns stated\n   - Specific negative feedback about solution fit\n\n**Soft Disqualification Signals (Reduce priority/change approach):**\n\n1. **Buying Process Indicators:**\n   - Excessive stakeholders required (>5 for decision)\n   - Unrealistic timeline expectations\n   - Historical pattern of evaluating but not purchasing\n   - Budget holder not involved after 2+ conversations\n\n2. **Engagement Patterns:**\n   - No response to 5+ personalized outreach attempts\n   - Repeated meeting no-shows or cancellations\n   - Engagement only with low-intent top-funnel content\n\n**Recommended Actions:**\n- Create a disqualification checklist in your CRM\n- Add automated tagging for key disqualification signals\n- Develop specific \"deferred interest\" sequences for soft disqualifications\n- Track opportunity cost of pursuing low-fit prospects\n\nProperly disqualifying leads can improve your team's productive selling time by up to 28%.",
+    
+    "How do we balance quantity and quality of meetings?": "To optimize the quantity-quality balance of your meetings, I recommend this framework:\n\n**Step 1: Establish Quality Scoring Criteria**\n\n- Define a clear meeting quality score (MQS) with these components:\n  - Fit score (0-40 points): Alignment with your ICP\n  - Need score (0-30 points): Clear, confirmed pain points\n  - Authority score (0-20 points): Decision-making ability\n  - Timing score (0-10 points): Readiness to evaluate\n\n- Define quality thresholds:\n  - 80-100: High-quality (ideal meetings)\n  - 60-79: Medium-quality (qualified opportunities)\n  - Below 60: Low-quality (should be avoided)\n\n**Step 2: Set Balanced SDR Metrics**\n\nAdjust your SDR metrics from pure quantity to a balanced approach:\n\n- Primary KPIs:\n  - Meeting Acceptance Rate (target: 25-30%)\n  - Quality-Adjusted Meeting Score (= # meetings × avg. quality score)\n  - Meeting-to-Opportunity Conversion (target:, 60%+)\n\n- Secondary KPIs:\n  - Qualification Accuracy Rating (% of meetings meeting quality threshold)\n  - Sales Acceptance Rate (% of meetings accepted by AEs)\n\n**Step 3: Operational Implementation**\n\n- Implement a pre-meeting qualification checklist\n- Create a meeting quality feedback loop with AEs\n- Set minimum quality thresholds rather than pure meeting counts\n- Reward quality-adjusted performance rather than raw meeting numbers\n\nThis approach typically results in 35% fewer total meetings but a 65% increase in opportunities created - a much more efficient use of selling time."
   },
   
-  // Loan Closing Agent
-  '27': {
-    'Schedule my loan closing appointment': 'I\'ve scheduled your loan closing appointment with the following details:\n\nClosing Appointment Confirmation\nLoan #: M-2025-36284\nBorrowers: John & Maria Sanchez\nProperty: 742 Pinecrest Avenue, Lake City, FL 32055\n\nAppointment Details:\n• Date: Wednesday, June 25, 2025\n• Time: 10:00 AM Eastern Time\n• Duration: Approximately 60-90 minutes\n• Location: Trusted Title Partners\n  1250 Commerce Plaza, Suite 305\n  Lake City, FL 32055\n\nParticipants:\n• John & Maria Sanchez (Borrowers)\n• Sarah Johnson (Closing Agent, Trusted Title Partners)\n• Michael Wong (Loan Officer, available by phone if needed)\n\nPre-Closing Requirements (Must be completed 24 hours before closing):\n• Wire transfer of closing funds ($43,287.65) to Trusted Title Partners\n• Final walkthrough of property scheduled\n• Review of Closing Disclosure (sent to your email)\n\nWhat to Bring to Closing:\n• Government-issued photo ID for all borrowers (driver\'s license, passport)\n• Proof of wire transfer/cashier\'s check for closing costs\n• Homeowner\'s insurance policy declaration page\n• Any outstanding documents requested by the loan officer\n\nSpecial Accommodations Arranged:\n• Spanish-speaking closing agent available as requested\n• Wheelchair accessible facility\n• Free parking available in the main lot\n\nI\'ve sent this confirmation to your email and added it to your calendar. Would you like me to make any changes to this appointment or help with any pre-closing requirements?',
-    'What documents need to be prepared for closing?': 'Here\'s a comprehensive list of documents that need to be prepared for your mortgage closing:\n\nDocuments Prepared by the Lender:\n\n1. Loan Documents\n   • Promissory Note (the actual loan agreement)\n   • Mortgage/Deed of Trust (secures the property as collateral)\n   • Closing Disclosure (details of all loan costs, provided 3 days before closing)\n   • Loan Application (final version to verify information accuracy)\n   • First Payment Letter (details when and where to make payments)\n\n2. Legal Disclosures\n   • Federal Truth-in-Lending Disclosure\n   • Affiliated Business Arrangement Disclosure\n   • Equal Credit Opportunity Act Disclosure\n   • Right to Financial Privacy Act Notice\n   • Fair Credit Reporting Act Disclosure\n\nDocuments Prepared by the Title Company:\n\n1. Title Documents\n   • Title Insurance Policy\n   • Title Commitment\n   • Deed (transfers ownership from seller to buyer)\n   • Property Survey (if applicable)\n   • Certificate of Occupancy (for new construction)\n\n2. Settlement Documents\n   • Settlement Statement/ALTA Statement\n   • Escrow Agreement\n   • Compliance Agreement\n   • Transfer Tax Declarations\n\nDocuments You Need to Bring/Prepare:\n\n1. Financial Verification\n   • Photo identification (driver\'s license, passport)\n   • Proof of funds for closing costs\n   • Cashier\'s check or wire transfer confirmation\n\n2. Insurance Documentation\n   • Homeowner\'s Insurance Policy with paid receipt\n   • Flood Insurance Policy (if required)\n\n3. Property-Specific Items\n   • Home Warranty Information (if applicable)\n   • Homeowners Association (HOA) Documentation (if applicable)\n   • Post-closing Occupancy Agreement (if applicable)\n\nSpecial Circumstance Documents (if applicable):\n\n1. Co-borrower/Non-occupant Borrower Documents\n   • Power of Attorney (if someone is signing on your behalf)\n   • Trust Documents (if purchasing in a trust)\n\n2. First-time Homebuyer Documents\n   • Homebuyer Education Certificate\n   • Down Payment Assistance Program Documentation\n\n3. Construction/Renovation Loan Documents\n   • Builder\'s Warranty\n   • Construction/Renovation Agreement\n\nAll documents should be reviewed carefully before signing. You\'ll receive the Closing Disclosure at least 3 business days before closing to review all costs in advance.\n\nWould you like information about how to prepare any of these specific documents?',
-    'Review the closing disclosure': 'I\'ve reviewed your Closing Disclosure dated June 8, 2025, for loan #M-2025-42187. Here\'s a comprehensive analysis:\n\nLoan Information Summary:\n• Loan Amount: $320,000\n• Loan Term: 30 years\n• Interest Rate: 4.375% (fixed)\n• Monthly Principal & Interest: $1,598.57\n• Product Type: Conventional 30-year fixed\n\nClosing Cost Analysis:\n\n1. Loan Costs: $8,752\n   ✓ Origination charges: $3,200 (1% of loan amount) - Matches estimate\n   ⚠️ Services you can\'t shop for: $1,450 - $150 higher than estimate\n      • Increased appraisal fee ($650 vs $500 estimated)\n   ✓ Services you can shop for: $4,102 - Matches estimate\n\n2. Other Costs: $5,623\n   ✓ Taxes and government fees: $2,350 - Matches estimate\n   ✓ Prepaids: $2,450 - Matches estimate\n   ⚠️ Initial escrow payment: $823 - $125 higher than estimate\n      • Higher homeowner\'s insurance premium\n\n3. Cash to Close: $73,642\n   • Down payment: $80,000\n   • Deposit: ($10,000) - Already paid\n   • Loan amount: ($320,000)\n   • Total closing costs: $14,375\n   • Adjustments: $9,267 (prorated property taxes and HOA dues)\n\nKey Findings:\n\n1. Fee Changes from Loan Estimate:\n   • Increased appraisal fee: $150 increase (within tolerance)\n   • Increased initial escrow payment: $125 increase (within tolerance)\n   • Total increase: $275 (0.086% of loan amount, within legal tolerance of 10%)\n\n2. Potential Errors or Concerns:\n   • Property tax calculation appears to be based on previous assessment ($3,450/year), but new assessment is $3,850/year - This may require adjustment\n   • Homeowner\'s insurance premium increased from estimate - Verify new policy matches coverage requirements\n\n3. Required Actions:\n   • Confirm title insurance premium is correct for your state\n   • Verify the payee information for your first payment\n   • Confirm accuracy of prorated property taxes and HOA dues\n\n4. Funds Needed for Closing:\n   • Confirmed amount: $73,642\n   • Payment method must be cashier\'s check or wire transfer\n   • Wire instructions should be verified by phone before sending\n\nThis Closing Disclosure appears generally accurate with the noted minor discrepancies. Would you like me to help address any of these specific items?',
-    'What happens after the closing is complete?': 'After your mortgage closing is complete, here\'s what happens next in the post-closing process:\n\nImmediate Post-Closing (1-3 Business Days):\n\n1. Funding Process\n   • Lender releases loan funds to the title company/attorney\n   • Seller receives proceeds from the sale\n   • Real estate agents receive their commission\n   • Outstanding liens and mortgages are paid off\n\n2. Document Recording\n   • Title company/attorney submits the deed and mortgage to the county recorder\'s office\n   • Recording typically takes 1-5 business days depending on the county\n   • You\'ll receive confirmation when recording is complete\n\n3. Key Handover\n   • If not provided at closing, you\'ll receive keys to your new property\n   • Garage door openers, mailbox keys, and access codes provided\n\nShort-Term Follow-Up (1-4 Weeks After Closing):\n\n1. Documentation Delivery\n   • You\'ll receive final recorded copies of your deed (2-4 weeks after closing)\n   • Original loan documents will be stored by your lender\n   • You\'ll receive a welcome packet from your loan servicer\n\n2. Financial Transitions\n   • First mortgage payment will be due on the date specified in your closing documents (typically the 1st of the month after 30 days)\n   • Escrow account is established for taxes and insurance (if applicable)\n   • Any refunds from previous escrow accounts will be processed\n\n3. Essential Setup Tasks\n   • Set up online account with your loan servicer\n   • Configure automatic payments (if desired)\n   • Update your address with USPS, DMV, voter registration, etc.\n   • Notify utility companies and transfer services to your name\n\nLonger-Term Considerations (1-3 Months After Closing):\n\n1. Title Insurance Policy\n   • You\'ll receive your owner\'s title insurance policy (if purchased)\n   • Store this with your other important property documents\n\n2. Property Tax Assessment\n   • Property may be reassessed for tax purposes\n   • Tax bills will be sent to your loan servicer if you have an escrow account\n\n3. Homestead Exemption\n   • File for homestead exemption with your county (if applicable)\n   • Deadline varies by location, typically within 1 year of purchase\n\n4. Welcome to Homeownership\n   • Mortgage statements begin arriving monthly\n   • Tax and insurance documents may arrive periodically\n   • Keep all home-related receipts for potential tax benefits\n\nIs there any specific part of this post-closing process you\'d like me to explain in more detail?'
-  },
-  
-  // Remaining agent responses would be filled in similarly for other agents...
+  // Default agent responses
+  'default': {
+    "What capabilities do you offer?": "As an AI assistant for sales development, I offer several capabilities to help streamline and optimize your outreach efforts:\n\n**Prospect Research & Targeting:**\n- Lead enrichment with firmographic and technographic data\n- ICP definition and refinement\n- Buyer persona development\n- Target account prioritization\n\n**Outreach Optimization:**\n- Email writing and optimization\n- Multi-channel sequence design\n- LinkedIn messaging assistance\n- A/B testing of messaging\n\n**Performance Analysis:**\n- Campaign analytics and insights\n- Conversion metrics tracking\n- SDR performance coaching\n- Pipeline forecasting\n\n**Meeting Support:**\n- Lead qualification frameworks\n- Meeting preparation assistance\n- Conversation guidance\n- Meeting note-taking and summarization\n\nI can work within your existing workflow to provide recommendations, generate content, analyze results, and help you continuously improve your sales development process.",
+    
+    "How can you help improve our sales process?": "I can help improve your sales development process in several impactful ways:\n\n1. **Increase Efficiency:**\n   - Automate repetitive tasks like data entry and enrichment\n   - Pre-qualify leads to focus on high-probability prospects\n   - Generate personalized outreach at scale\n   - Provide quick access to relevant information during calls\n\n2. **Improve Effectiveness:**\n   - Analyze what messaging resonates with different personas\n   - Optimize outreach timing and cadence\n   - Provide data-driven coaching to improve performance\n   - Surface insights from successful patterns\n\n3. **Drive Consistency:**\n   - Standardize qualification criteria\n   - Ensure follow-up on all leads and opportunities\n   - Maintain data quality across your tech stack\n   - Create repeatable, scalable processes\n\n4. **Enable Continuous Improvement:**\n   - Analyze conversion metrics at each funnel stage\n   - Identify bottlenecks in your sales process\n   - Test and measure different approaches\n   - Share best practices across the team\n\nMost teams see a 30-40% increase in productivity and a 15-25% improvement in conversion rates after implementing these AI-assisted workflows.",
+    
+    "What data do you need to be effective?": "To provide maximum value, I work best with these data sources:\n\n**Essential Data (Minimum Requirements):**\n- **CRM Data:** Contact information, company details, activity history\n- **Email Data:** Message content, open/reply rates, sequence performance\n- **Campaign Data:** Target segments, messaging, conversion metrics\n\n**Enhanced Data (For Advanced Features):**\n- **Enrichment Data:** Firmographic, technographic, and intent signals\n- **Conversation Intelligence:** Call recordings, meeting transcripts\n- **Website Analytics:** Visitor behavior, content engagement\n- **Sales Engagement Platform:** Multi-channel activity tracking\n\n**Integration Methods:**\n- Direct API connections to your key systems\n- Scheduled data imports/exports\n- Manual uploads for specific analyses\n\nI employ strong data security practices including encryption, access controls, and data minimization to protect sensitive information. All data processing adheres to relevant privacy regulations including GDPR, CCPA, and industry standards.",
+    
+    "How do you integrate with our existing tools?": "I can integrate with your sales tech stack in multiple ways:\n\n**CRM Systems:**\n- Salesforce: Native integration via API\n- HubSpot: Two-way sync with workflows\n- Pipedrive/Close/Zoho: API connections\n\n**Sales Engagement Platforms:**\n- Outreach/SalesLoft: Template libraries, sequence analytics\n- Apollo/ZoomInfo: Contact data enrichment\n- Reply/Lemlist: Campaign performance analysis\n\n**Communication Tools:**\n- Email providers: Gmail, Outlook, custom SMTP\n- Calendar apps: Google Calendar, Outlook Calendar\n- Meeting tools: Zoom, Teams, Google Meet\n\n**Data & Analytics:**\n- BI tools: Power BI, Tableau, Looker\n- Spreadsheets: Excel, Google Sheets\n- Custom dashboards: Embedded analytics\n\n**Setup Process:**\n1. API configuration (typically 1-2 hours with IT support)\n2. Data mapping customization (1 day)\n3. Permission and access controls (1-2 hours)\n4. Testing and validation (1-2 days)\n\nMost teams can be fully operational with all integrations in less than a week with minimal IT resources required."
+  }
 };
