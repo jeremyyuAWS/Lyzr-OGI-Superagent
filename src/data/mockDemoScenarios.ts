@@ -124,6 +124,24 @@ export const agentDemoScenarios: Record<string, DemoScenario> = {
     ]
   },
   
+  '7': {
+    title: 'Content Recommendations',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hi there! I'm your Content Recommendations Agent. I can help you find the most relevant content to share with prospects based on their interests, industry, and stage in the buyer journey. What are you looking for today?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "What content works best for initial outreach?",
+      "How should we share case studies effectively?",
+      "What content should I share with a finance leader?",
+      "How do I know which content to use at each stage?"
+    ]
+  },
+  
   // Analytics & Performance
   '8': {
     title: 'SDR Performance Coaching',
@@ -161,6 +179,42 @@ export const agentDemoScenarios: Record<string, DemoScenario> = {
     ]
   },
   
+  '10': {
+    title: 'A/B Testing Analysis',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Welcome to the A/B Testing Analyst! I help design and analyze experiments to optimize your sales outreach. What aspect of your messaging would you like to test and improve?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "How should we structure our next A/B test?",
+      "What sample size do we need for reliable results?",
+      "What elements have the biggest impact on response rates?",
+      "How do we interpret our testing results properly?"
+    ]
+  },
+  
+  '11': {
+    title: 'Pipeline Forecasting',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hello! I'm your Pipeline Forecast Agent. I can help predict future sales pipeline based on your current outreach activities and historical conversion data. What would you like to know about your future pipeline?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "What will our pipeline look like next quarter?",
+      "How many meetings do we need to hit our targets?",
+      "What's our projected conversion rate?",
+      "Where are the biggest risks in our forecast?"
+    ]
+  },
+  
   // Meeting & Qualification 
   '12': {
     title: 'Lead Qualification Strategy',
@@ -195,6 +249,61 @@ export const agentDemoScenarios: Record<string, DemoScenario> = {
       "What's the best way to schedule with busy executives?",
       "How many time options should we offer?",
       "What information should we collect before scheduling?"
+    ]
+  },
+  
+  '14': {
+    title: 'Meeting Preparation',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hello! I'm your Call Prep Agent. I help you prepare for sales calls by researching prospects, identifying talking points, and preparing for potential objections. What upcoming call would you like help with?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "What should I research before a first meeting?",
+      "How do I prepare for common objections?",
+      "What discovery questions should I ask?",
+      "How should I structure my first call?"
+    ]
+  },
+  
+  '15': {
+    title: 'Meeting Note Optimization',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hi there! I'm your Meeting Notes Agent. I can help you capture and organize key information from your sales conversations, identify action items, and suggest follow-up strategies. How can I assist with your meeting notes today?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "What should be included in effective meeting notes?",
+      "How can we standardize our meeting summaries?",
+      "What follow-up actions should I take after a meeting?",
+      "How can we track key insights across multiple meetings?"
+    ]
+  },
+  
+  // Technical & Support
+  '16': {
+    title: 'Integration Strategy',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hello! I'm your Integration Agent. I can help connect and optimize your sales tools and data flows between systems. What integrations are you looking to set up or improve?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "How should we integrate our CRM with other tools?",
+      "What data should flow between systems?",
+      "How can we reduce manual data entry?",
+      "What's the best way to keep our data in sync?"
     ]
   },
   
