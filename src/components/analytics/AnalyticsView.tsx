@@ -1,4 +1,4 @@
-import { Mail, DollarSign, BarChart, Lightbulb, Download, FileText, Filter } from 'lucide-react';
+import { Mail, Users, BarChart, Calendar, Download, FileText, Filter } from 'lucide-react';
 import { useState } from 'react';
 import MetricCard from '../shared/MetricCard';
 import UsageTrends from './UsageTrends';
@@ -31,7 +31,7 @@ const AnalyticsView = () => {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
         <MetricCard
-          title="Total Agent Runs"
+          title="Total Emails Sent"
           value="14,328"
           icon={<Mail className="h-5 w-5" />}
           trend={{ value: 24, isPositive: true }}
@@ -39,11 +39,11 @@ const AnalyticsView = () => {
           color="#3B82F6" // Blue
         />
         <MetricCard
-          title="Estimated ROI"
+          title="Pipeline Generated"
           value="$283,450"
-          icon={<DollarSign className="h-5 w-5" />}
+          icon={<Users className="h-5 w-5" />}
           trend={{ value: 16, isPositive: true }}
-          description="Based on time savings and improved conversion"
+          description="Based on meetings booked"
           color="#10B981" // Green
         />
         <MetricCard
@@ -51,13 +51,13 @@ const AnalyticsView = () => {
           value="28.4%"
           icon={<BarChart className="h-5 w-5" />}
           trend={{ value: 3.2, isPositive: true }}
-          description="Across all outreach efforts"
+          description="Across all outreach"
           color="#F59E0B" // Amber
         />
         <MetricCard
           title="Meetings Booked"
           value="467"
-          icon={<Lightbulb className="h-5 w-5" />}
+          icon={<Calendar className="h-5 w-5" />}
           trend={{ value: 5, isPositive: true }}
           description="From AI-assisted outreach"
           color="#EC4899" // Pink
