@@ -1,4 +1,4 @@
-import { Clock, DollarSign, BarChart, Lightbulb, Download, FileText, Filter } from 'lucide-react';
+import { Mail, DollarSign, BarChart, Lightbulb, Download, FileText, Filter } from 'lucide-react';
 import { useState } from 'react';
 import MetricCard from '../shared/MetricCard';
 import UsageTrends from './UsageTrends';
@@ -14,7 +14,7 @@ const AnalyticsView = () => {
     <div>
       <div className="mb-6 flex justify-between items-center">
         <div>
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Analytics & Insights</h2>
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Performance Insights</h2>
           <p className="text-sm md:text-base text-gray-600">
             Track agent usage, ROI, and performance metrics across your sales development operations
           </p>
@@ -33,7 +33,7 @@ const AnalyticsView = () => {
         <MetricCard
           title="Total Agent Runs"
           value="14,328"
-          icon={<Clock className="h-5 w-5" />}
+          icon={<Mail className="h-5 w-5" />}
           trend={{ value: 24, isPositive: true }}
           description="Last 30 days"
           color="#3B82F6" // Blue
@@ -67,7 +67,7 @@ const AnalyticsView = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-transparent flex justify-between items-center">
-            <h3 className="font-medium text-gray-800">Usage Trends</h3>
+            <h3 className="font-medium text-gray-800">Outreach Trends</h3>
             <button className="p-1 text-gray-500 hover:text-gray-700">
               <FileText className="h-4 w-4" />
             </button>
@@ -79,7 +79,7 @@ const AnalyticsView = () => {
         
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-4 border-b border-gray-100 bg-gradient-to-r from-green-50 to-transparent flex justify-between items-center">
-            <h3 className="font-medium text-gray-800">ROI Dashboard</h3>
+            <h3 className="font-medium text-gray-800">Pipeline Impact</h3>
             <button className="p-1 text-gray-500 hover:text-gray-700">
               <FileText className="h-4 w-4" />
             </button>
@@ -107,7 +107,7 @@ const AnalyticsView = () => {
       <div className="grid grid-cols-1 gap-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-4 border-b border-gray-100 bg-gradient-to-r from-pink-50 to-transparent flex justify-between items-center">
-            <h3 className="font-medium text-gray-800">Discovery Insights</h3>
+            <h3 className="font-medium text-gray-800">Optimization Insights</h3>
             <button className="p-1 text-gray-500 hover:text-gray-700">
               <FileText className="h-4 w-4" />
             </button>

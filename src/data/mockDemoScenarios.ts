@@ -307,6 +307,60 @@ export const agentDemoScenarios: Record<string, DemoScenario> = {
     ]
   },
   
+  '17': {
+    title: 'CRM Data Management',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hi there! I'm your CRM Updater Agent. I help maintain accurate data in your CRM by automating updates, ensuring clean records, and syncing information from various sources. What CRM challenges are you facing?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "How can we improve our CRM data quality?",
+      "What fields should we track for effective reporting?",
+      "How should we structure our contact and account records?",
+      "What automation can we set up for data maintenance?"
+    ]
+  },
+  
+  '19': {
+    title: 'General SDR Assistance',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Hello! I'm your SDR General Assistant. I can help with any questions about your sales development process, tools, or best practices. What can I help you with today?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "What's the typical day of a high-performing SDR?",
+      "How should I prioritize my tasks for maximum output?",
+      "What resources are available for improving my skills?",
+      "How can I use the various SDR agents effectively?"
+    ]
+  },
+  
+  '20': {
+    title: 'Responsible AI in Sales',
+    initialMessages: [
+      {
+        id: '1',
+        sender: 'agent',
+        content: "Welcome! I'm your Responsible AI Agent. I ensure our sales development AI practices remain ethical, compliant, and respectful of prospect privacy. What aspect of responsible AI would you like to explore?",
+        timestamp: new Date()
+      }
+    ],
+    questions: [
+      "How do we ensure compliance with privacy regulations?",
+      "What ethical considerations apply to AI-assisted outreach?",
+      "How do we maintain transparency with prospects?",
+      "What data practices should we follow for responsible use?"
+    ]
+  },
+  
   // Default for other agents
   'default': {
     title: 'AI Assistant Demo',
@@ -370,5 +424,16 @@ export const agentResponses: Record<string, Record<string, string>> = {
     "What disqualification signals should we watch for?": "Here are the key disqualification signals that help avoid wasting time on poor-fit opportunities:\n\n**Hard Disqualification Signals (Exit from sequences):**\n\n1. **Firmographic Misfit:**\n   - Company size <50 employees or >10,000 employees\n   - Industries with regulatory barriers to your solution\n   - Geographic regions you cannot service\n   - Annual revenue below minimum threshold for ROI\n\n2. **Technical Blockers:**\n   - Incompatible core systems that prevent integration\n   - Recently signed with direct competitor (past 6 months)\n   - Technical requirements you cannot meet\n\n3. **Explicit Rejection:**\n   - Clear opt-out or \"not interested\" response\n   - Legal/compliance concerns stated\n   - Specific negative feedback about solution fit\n\n**Soft Disqualification Signals (Reduce priority/change approach):**\n\n1. **Buying Process Indicators:**\n   - Excessive stakeholders required (>5 for decision)\n   - Unrealistic timeline expectations\n   - Historical pattern of evaluating but not purchasing\n   - Budget holder not involved after 2+ conversations\n\n2. **Engagement Patterns:**\n   - No response to 5+ personalized outreach attempts\n   - Repeated meeting no-shows or cancellations\n   - Engagement only with low-intent top-funnel content\n\n**Recommended Actions:**\n- Create a disqualification checklist in your CRM\n- Add automated tagging for key disqualification signals\n- Develop specific \"deferred interest\" sequences for soft disqualifications\n- Track opportunity cost of pursuing low-fit prospects\n\nProperly disqualifying leads can improve your team's productive selling time by up to 28%.",
     
     "How do we balance quantity and quality of meetings?": "To optimize the quantity-quality balance of your meetings, I recommend this framework:\n\n**Step 1: Establish Quality Scoring Criteria**\n\n- Define a clear meeting quality score (MQS) with these components:\n  - Fit score (0-40 points): Alignment with your ICP\n  - Need score (0-30 points): Clear, confirmed pain points\n  - Authority score (0-20 points): Decision-making ability\n  - Timing score (0-10 points): Readiness to evaluate\n\n- Define quality thresholds:\n  - 80-100: High-quality (ideal meetings)\n  - 60-79: Medium-quality (qualified opportunities)\n  - Below 60: Low-quality (should be avoided)\n\n**Step 2: Set Balanced SDR Metrics**\n\nAdjust your SDR metrics from pure quantity to a balanced approach:\n\n- Primary KPIs:\n  - Meeting Acceptance Rate (target: 25-30%)\n  - Quality-Adjusted Meeting Score (= # meetings × avg. quality score)\n  - Meeting-to-Opportunity Conversion (target: 60%+)\n\n- Secondary KPIs:\n  - Qualification Accuracy Rating (% of meetings meeting quality threshold)\n  - Sales Acceptance Rate (% of meetings accepted by AEs)\n\n**Step 3: Operational Implementation**\n\n- Implement a pre-meeting qualification checklist\n- Create a meeting quality feedback loop with AEs\n- Set minimum quality thresholds rather than pure meeting counts\n- Reward quality-adjusted performance rather than raw meeting numbers\n\nThis approach typically results in 35% fewer total meetings but a 65% increase in opportunities created - a much more efficient use of selling time."
+  },
+  
+  // Default agent responses
+  'default': {
+    "What capabilities do you offer?": "As an AI assistant for sales development, I offer several capabilities to help streamline and optimize your outreach efforts:\n\n**Prospect Research & Targeting:**\n- Lead enrichment with firmographic and technographic data\n- ICP definition and refinement\n- Buyer persona development\n- Target account prioritization\n\n**Outreach Optimization:**\n- Email writing and optimization\n- Multi-channel sequence design\n- LinkedIn messaging assistance\n- A/B testing of messaging\n\n**Performance Analysis:**\n- Campaign analytics and insights\n- Conversion metrics tracking\n- SDR performance coaching\n- Pipeline forecasting\n\n**Meeting Support:**\n- Lead qualification frameworks\n- Meeting preparation assistance\n- Conversation guidance\n- Meeting note-taking and summarization\n\nI can work within your existing workflow to provide recommendations, generate content, analyze results, and help you continuously improve your sales development process.",
+    
+    "How can you help improve our sales process?": "I can help improve your sales development process in several impactful ways:\n\n1. **Increase Efficiency:**\n   - Automate repetitive tasks like data entry and enrichment\n   - Pre-qualify leads to focus on high-probability prospects\n   - Generate personalized outreach at scale\n   - Provide quick access to relevant information during calls\n\n2. **Improve Effectiveness:**\n   - Analyze what messaging resonates with different personas\n   - Optimize outreach timing and cadence\n   - Provide data-driven coaching to improve performance\n   - Surface insights from successful patterns\n\n3. **Drive Consistency:**\n   - Standardize qualification criteria\n   - Ensure follow-up on all leads and opportunities\n   - Maintain data quality across your tech stack\n   - Create repeatable, scalable processes\n\n4. **Enable Continuous Improvement:**\n   - Analyze conversion metrics at each funnel stage\n   - Identify bottlenecks in your sales process\n   - Test and measure different approaches\n   - Share best practices across the team\n\nMost teams see a 30-40% increase in productivity and a 15-25% improvement in conversion rates after implementing these AI-assisted workflows.",
+    
+    "What data do you need to be effective?": "To provide maximum value, I work best with these data sources:\n\n**Essential Data (Minimum Requirements):**\n- **CRM Data:** Contact information, company details, activity history\n- **Email Data:** Message content, open/reply rates, sequence performance\n- **Campaign Data:** Target segments, messaging, conversion metrics\n\n**Enhanced Data (For Advanced Features):**\n- **Enrichment Data:** Firmographic, technographic, and intent signals\n- **Conversation Intelligence:** Call recordings, meeting transcripts\n- **Website Analytics:** Visitor behavior, content engagement\n- **Sales Engagement Platform:** Multi-channel activity tracking\n\n**Integration Methods:**\n- Direct API connections to your key systems\n- Scheduled data imports/exports\n- Manual uploads for specific analyses\n\nI employ strong data security practices including encryption, access controls, and data minimization to protect sensitive information. All data processing adheres to relevant privacy regulations including GDPR, CCPA, and industry standards.",
+    
+    "How do you integrate with our existing tools?": "I can integrate with your sales tech stack in multiple ways:\n\n**CRM Systems:**\n- Salesforce: Native integration via API\n- HubSpot: Two-way sync with workflows\n- Pipedrive/Close/Zoho: API connections\n\n**Sales Engagement Platforms:**\n- Outreach/SalesLoft: Template libraries, sequence analytics\n- Apollo/ZoomInfo: Contact data enrichment\n- Reply/Lemlist: Campaign performance analysis\n\n**Communication Tools:**\n- Email providers: Gmail, Outlook, custom SMTP\n- Calendar apps: Google Calendar, Outlook Calendar\n- Meeting tools: Zoom, Teams, Google Meet\n\n**Data & Analytics:**\n- BI tools: Power BI, Tableau, Looker\n- Spreadsheets: Excel, Google Sheets\n- Custom dashboards: Embedded analytics\n\n**Setup Process:**\n1. API configuration (typically 1-2 hours with IT support)\n2. Data mapping customization (1 day)\n3. Permission and access controls (1-2 hours)\n4. Testing and validation (1-2 days)\n\nMost teams can be fully operational with all integrations in less than a week with minimal IT resources required."
   }
 };

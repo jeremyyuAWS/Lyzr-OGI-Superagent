@@ -8,8 +8,8 @@ interface TabNavigationProps {
 const TabNavigation = ({ activeTab, setActiveTab }: TabNavigationProps) => {
   const tabs = [
     { id: 'agents', label: 'Agent Gallery', icon: <Users className="w-5 h-5" /> },
-    { id: 'ogi', label: 'OGI View', icon: <Network className="w-5 h-5" /> },
-    { id: 'analytics', label: 'Analytics & Insights', icon: <BarChart3 className="w-5 h-5" /> },
+    { id: 'ogi', label: 'Sales Intelligence Network', icon: <Network className="w-5 h-5" /> },
+    { id: 'analytics', label: 'Performance Insights', icon: <BarChart3 className="w-5 h-5" /> },
     { id: 'responsible-ai', label: 'Responsible AI', icon: <Shield className="w-5 h-5" /> },
   ];
 
