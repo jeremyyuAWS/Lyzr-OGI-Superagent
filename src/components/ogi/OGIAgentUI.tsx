@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChevronUp, ChevronDown, Send, User, Bot, Clock, Maximize2, ChevronLeft, AlertTriangle, X } from 'lucide-react';
+import { ChevronUp, ChevronDown, Send, User, Bot, Clock, Maximize2, ChevronLeft, AlertTriangle, X, Link, TrendingUp, Network, Database, Settings, Shield, Users } from 'lucide-react';
 import { networkData, nodeQuestions, generalQuestions } from '../../data/mockNetworkData';
 import { enhancedOGIResponses } from '../../data/mockOGIResponses';
 import OGIVisualization from './OGIVisualization';
+import TabQuestionSuggestions from './TabQuestionSuggestions';
 
 interface OGIAgentUIProps {
   selectedNode: string | null;
@@ -224,6 +225,15 @@ const OGIAgentUI = ({ selectedNode }: OGIAgentUIProps) => {
     }
     return generalQuestions;
   };
+
+  // Define question categories
+  const questionCategories = [
+    { id: 'connections', label: 'Network Connections', icon: <Network className="h-4 w-4" /> },
+    { id: 'performance', label: 'Performance & ROI', icon: <TrendingUp className="h-4 w-4" /> },
+    { id: 'data', label: 'Data & Information', icon: <Database className="h-4 w-4" /> },
+    { id: 'governance', label: 'Security & Governance', icon: <Shield className="h-4 w-4" /> },
+    { id: 'teams', label: 'Teams & Users', icon: <Users className="h-4 w-4" /> }
+  ];
   
   return (
     <div className={`flex flex-col h-full ${expanded ? 'fixed inset-0 z-50 bg-white' : ''}`}>
@@ -341,10 +351,10 @@ const OGIAgentUI = ({ selectedNode }: OGIAgentUIProps) => {
         <div ref={messagesEndRef} />
       </div>
       
-      {/* Suggested Questions */}
+      {/* Suggested Questions Tabs */}
       {showSuggestions && messages.length < 3 && (
-        <div className="p-4 bg-white border-t border-gray-200">
-          <div className="flex justify-between items-center mb-2">
+        <div className="bg-white border-t border-gray-200">
+          <div className="flex justify-between items-center p-4 pb-2">
             <h4 className="text-sm font-medium text-gray-700">Suggested Questions</h4>
             <button 
               onClick={() => setShowSuggestions(false)}
@@ -353,17 +363,13 @@ const OGIAgentUI = ({ selectedNode }: OGIAgentUIProps) => {
               Hide
             </button>
           </div>
-          <div className="grid grid-cols-1 gap-2">
-            {getSuggestedQuestions().slice(0, 4).map((question, index) => (
-              <button
-                key={index}
-                onClick={() => handleSuggestionClick(question)}
-                className="text-left w-full bg-gray-50 hover:bg-gray-100 text-sm p-2 rounded border border-gray-200 transition-colors"
-              >
-                {question}
-              </button>
-            ))}
-          </div>
+          
+          <TabQuestionSuggestions 
+            categories={questionCategories}
+            questions={getSuggestedQuestions()}
+            onQuestionClick={handleSuggestionClick}
+            selectedNode={selectedNode}
+          />
         </div>
       )}
       
