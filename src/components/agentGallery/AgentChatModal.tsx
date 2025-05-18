@@ -19,7 +19,7 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
     {
       id: '1',
       sender: 'agent',
-      content: `Hello, I'm the ${agent.name}. How can I assist you today with your banking needs?`,
+      content: `Hello, I'm the ${agent.name}. How can I assist you today with your sales development needs?`,
       timestamp: new Date()
     }
   ]);
@@ -36,11 +36,11 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
   const generateAgentResponse = (userQuery: string): string => {
     // This would be replaced with an actual API call to a real agent
     const responses = [
-      `Based on my analysis of your query about "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}", I recommend reviewing our latest banking compliance guidelines. In a real implementation, I would provide precise information based on your specific situation.`,
-      `I've analyzed your question regarding "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}". As the ${agent.name}, I can help with this specific banking workflow. In a production environment, I would connect to secure banking systems to provide accurate, real-time guidance.`,
-      `Thank you for your query about "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}". I've processed this request and would typically access our banking knowledge base to provide a compliant, accurate response tailored to your specific situation.`,
-      `I understand you're asking about "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}". As a specialized banking agent, I would normally analyze this against our regulatory framework and institutional policies to provide personalized guidance.`,
-      `Your query regarding "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}" falls within my expertise as the ${agent.name}. In a production environment, I would securely access relevant banking data and provide a comprehensive, compliant response.`
+      `Based on my analysis of your query about "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}", I recommend reviewing our latest sales outreach techniques. In a real implementation, I would provide precise information based on your specific situation.`,
+      `I've analyzed your question regarding "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}". As the ${agent.name}, I can help with this specific sales workflow. In a production environment, I would connect to sales systems to provide accurate, real-time guidance.`,
+      `Thank you for your query about "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}". I've processed this request and would typically access our sales knowledge base to provide a compliant, accurate response tailored to your specific situation.`,
+      `I understand you're asking about "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}". As a specialized sales agent, I would normally analyze this against our best practices and organizational policies to provide personalized guidance.`,
+      `Your query regarding "${userQuery.substring(0, 30)}${userQuery.length > 30 ? '...' : ''}" falls within my expertise as the ${agent.name}. In a production environment, I would securely access relevant sales data and provide a comprehensive, actionable response.`
     ];
     
     // Choose a random response
@@ -95,7 +95,7 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
       {
         id: '1',
         sender: 'agent',
-        content: `Hello, I'm the ${agent.name}. How can I assist you today with your banking needs?`,
+        content: `Hello, I'm the ${agent.name}. How can I assist you today with your sales development needs?`,
         timestamp: new Date()
       }
     ]);
@@ -174,7 +174,7 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
                   <div className="bg-gray-100 rounded-lg p-3">
                     <div className="flex items-center space-x-2">
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500"></div>
-                      <span className="text-xs text-gray-500">Analyzing banking data...</span>
+                      <span className="text-xs text-gray-500">Analyzing sales data...</span>
                     </div>
                     <div className="mt-2 w-full bg-gray-200 rounded-full h-1">
                       <div className="bg-blue-500 h-1 rounded-full animate-pulse" style={{ width: '60%' }}></div>
@@ -206,7 +206,7 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
                   className="flex-1 border border-gray-300 rounded-l-md py-2 px-3 focus:ring-black focus:border-black text-sm max-h-24"
-                  placeholder="Ask me anything about banking..."
+                  placeholder="Ask me anything about sales development..."
                   rows={1}
                   disabled={isTyping}
                 />
@@ -226,7 +226,7 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
                 <div>
                   <p className="font-medium text-blue-800 mb-1">Interactive Demo Mode</p>
                   <p>
-                    This is a simulated interaction with the {agent.name}. In a real implementation, this agent would connect to secure banking APIs and use advanced AI to provide accurate, compliant responses based on your institution's policies.
+                    This is a simulated interaction with the {agent.name}. In a real implementation, this agent would connect to your CRM, engagement tools, and use advanced AI to provide accurate, actionable insights for your sales development process.
                   </p>
                 </div>
               </div>
@@ -246,58 +246,130 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
                 <ul className="text-xs text-gray-600 space-y-1 ml-1">
                   {agent.id === '1' && (
                     <>
-                      <li>• Document verification</li>
-                      <li>• Identity validation</li>
-                      <li>• Regulatory compliance</li>
-                      <li>• Risk assessment</li>
+                      <li>• Target account identification</li>
+                      <li>• Persona definition</li>
+                      <li>• Segment prioritization</li>
+                      <li>• ICP modeling</li>
                     </>
                   )}
                   {agent.id === '2' && (
                     <>
-                      <li>• Pattern recognition</li>
-                      <li>• Transaction analysis</li>
-                      <li>• Real-time monitoring</li>
-                      <li>• Risk scoring</li>
+                      <li>• Firmographic enrichment</li>
+                      <li>• Technographic analysis</li>
+                      <li>• Intent signal detection</li>
+                      <li>• Contact verification</li>
                     </>
                   )}
                   {agent.id === '3' && (
                     <>
-                      <li>• Credit assessment</li>
-                      <li>• Risk evaluation</li>
-                      <li>• Application processing</li>
-                      <li>• Score optimization</li>
+                      <li>• Buyer persona generation</li>
+                      <li>• Objection mapping</li>
+                      <li>• Role-based targeting</li>
+                      <li>• Persona prioritization</li>
                     </>
                   )}
                   {agent.id === '4' && (
                     <>
-                      <li>• Suspicious activity detection</li>
-                      <li>• Regulatory reporting</li>
-                      <li>• Pattern analysis</li>
-                      <li>• Compliance management</li>
+                      <li>• Email personalization</li>
+                      <li>• Subject line optimization</li>
+                      <li>• Message structure</li>
+                      <li>• Tone adjustment</li>
                     </>
                   )}
                   {agent.id === '5' && (
                     <>
-                      <li>• Portfolio analysis</li>
-                      <li>• Performance tracking</li>
-                      <li>• Investment insights</li>
-                      <li>• Optimization recommendations</li>
+                      <li>• Multichannel sequence design</li>
+                      <li>• Cadence timing</li>
+                      <li>• Touch optimization</li>
+                      <li>• Follow-up automation</li>
                     </>
                   )}
                   {agent.id === '6' && (
                     <>
-                      <li>• Query resolution</li>
-                      <li>• Account assistance</li>
-                      <li>• Service requests</li>
-                      <li>• Information guidance</li>
+                      <li>• Connection requests</li>
+                      <li>• InMail formatting</li>
+                      <li>• Profile research</li>
+                      <li>• Social engagement</li>
                     </>
                   )}
                   {agent.id === '7' && (
                     <>
-                      <li>• Application review</li>
-                      <li>• Documentation verification</li>
+                      <li>• Content relevance scoring</li>
+                      <li>• Case study matching</li>
+                      <li>• Resource curation</li>
+                      <li>• Value alignment</li>
+                    </>
+                  )}
+                  {agent.id === '8' && (
+                    <>
+                      <li>• Performance analysis</li>
+                      <li>• Personalized coaching</li>
+                      <li>• Productivity improvement</li>
+                      <li>• Best practice sharing</li>
+                    </>
+                  )}
+                  {agent.id === '9' && (
+                    <>
+                      <li>• Campaign measurement</li>
+                      <li>• Conversion tracking</li>
+                      <li>• Performance visualization</li>
+                      <li>• Segment comparison</li>
+                    </>
+                  )}
+                  {agent.id === '10' && (
+                    <>
+                      <li>• Test design</li>
+                      <li>• Statistical analysis</li>
+                      <li>• Performance comparison</li>
+                      <li>• Insight generation</li>
+                    </>
+                  )}
+                  {agent.id === '11' && (
+                    <>
+                      <li>• Revenue forecasting</li>
+                      <li>• Pipeline visualization</li>
+                      <li>• Conversion projection</li>
                       <li>• Risk assessment</li>
-                      <li>• Policy compliance</li>
+                    </>
+                  )}
+                  {agent.id === '12' && (
+                    <>
+                      <li>• Lead scoring</li>
+                      <li>• Qualification criteria</li>
+                      <li>• BANT assessment</li>
+                      <li>• Meeting readiness</li>
+                    </>
+                  )}
+                  {agent.id === '13' && (
+                    <>
+                      <li>• Calendar optimization</li>
+                      <li>• Booking automation</li>
+                      <li>• Reminder management</li>
+                      <li>• Follow-up coordination</li>
+                    </>
+                  )}
+                  {agent.id === '14' && (
+                    <>
+                      <li>• Prospect research</li>
+                      <li>• Discovery questions</li>
+                      <li>• Talking points</li>
+                      <li>• Objection preparation</li>
+                    </>
+                  )}
+                  {agent.id === '15' && (
+                    <>
+                      <li>• Automatic transcription</li>
+                      <li>• Summary generation</li>
+                      <li>• Action item extraction</li>
+                      <li>• Next steps tracking</li>
+                    </>
+                  )}
+                  {agent.id >= '16' && (
+                    <>
+                      <li>• System integration</li>
+                      <li>• Process automation</li>
+                      <li>• Custom configuration</li>
+                      <li>• Workflow optimization</li>
                     </>
                   )}
                 </ul>
@@ -311,58 +383,130 @@ const AgentChatModal = ({ agent, onClose }: AgentChatModalProps) => {
                 <ul className="text-xs text-gray-600 space-y-1 ml-1">
                   {agent.id === '1' && (
                     <>
-                      <li>• Customer identification</li>
-                      <li>• Document requirements</li>
-                      <li>• Verification workflows</li>
-                      <li>• Compliance processes</li>
+                      <li>• How to define an ICP</li>
+                      <li>• Which industries to target</li>
+                      <li>• Best personas to prioritize</li>
+                      <li>• Target account selection</li>
                     </>
                   )}
                   {agent.id === '2' && (
                     <>
-                      <li>• Fraud indicators</li>
-                      <li>• Security protocols</li>
-                      <li>• Suspicious patterns</li>
-                      <li>• Transaction monitoring</li>
+                      <li>• Lead enrichment sources</li>
+                      <li>• Data accuracy metrics</li>
+                      <li>• Contact validation</li>
+                      <li>• Intent data signals</li>
                     </>
                   )}
                   {agent.id === '3' && (
                     <>
-                      <li>• Credit evaluation</li>
-                      <li>• Scoring factors</li>
-                      <li>• Application status</li>
-                      <li>• Approval criteria</li>
+                      <li>• Creating buyer personas</li>
+                      <li>• Testing different personas</li>
+                      <li>• Persona attributes</li>
+                      <li>• Role-based messaging</li>
                     </>
                   )}
                   {agent.id === '4' && (
                     <>
-                      <li>• AML requirements</li>
-                      <li>• Suspicious activity</li>
-                      <li>• Reporting timelines</li>
-                      <li>• Compliance guidelines</li>
+                      <li>• Email effectiveness</li>
+                      <li>• Subject line advice</li>
+                      <li>• Personalization techniques</li>
+                      <li>• Message structures</li>
                     </>
                   )}
                   {agent.id === '5' && (
                     <>
-                      <li>• Investment strategies</li>
-                      <li>• Portfolio balancing</li>
-                      <li>• Performance metrics</li>
-                      <li>• Market insights</li>
+                      <li>• Optimal sequence length</li>
+                      <li>• Multi-channel sequences</li>
+                      <li>• Timing between touches</li>
+                      <li>• Sequence performance</li>
                     </>
                   )}
                   {agent.id === '6' && (
                     <>
-                      <li>• Account inquiries</li>
-                      <li>• Banking services</li>
-                      <li>• Transaction issues</li>
-                      <li>• Product information</li>
+                      <li>• LinkedIn connection rate</li>
+                      <li>• Connection message format</li>
+                      <li>• Profile optimization</li>
+                      <li>• Social selling tactics</li>
                     </>
                   )}
                   {agent.id === '7' && (
                     <>
-                      <li>• Loan application status</li>
-                      <li>• Underwriting criteria</li>
-                      <li>• Documentation needs</li>
-                      <li>• Approval process</li>
+                      <li>• Best content for my persona</li>
+                      <li>• Case study selection</li>
+                      <li>• Content engagement</li>
+                      <li>• Asset recommendation</li>
+                    </>
+                  )}
+                  {agent.id === '8' && (
+                    <>
+                      <li>• Improving response rates</li>
+                      <li>• Coaching on message quality</li>
+                      <li>• Best practices advice</li>
+                      <li>• Performance improvement</li>
+                    </>
+                  )}
+                  {agent.id === '9' && (
+                    <>
+                      <li>• Campaign performance</li>
+                      <li>• Conversion metrics</li>
+                      <li>• Benchmark comparison</li>
+                      <li>• Trend analysis</li>
+                    </>
+                  )}
+                  {agent.id === '10' && (
+                    <>
+                      <li>• A/B test setup</li>
+                      <li>• Test result analysis</li>
+                      <li>• Statistical significance</li>
+                      <li>• Test optimization</li>
+                    </>
+                  )}
+                  {agent.id === '11' && (
+                    <>
+                      <li>• Pipeline forecast</li>
+                      <li>• Conversion projections</li>
+                      <li>• Revenue estimates</li>
+                      <li>• Forecast accuracy</li>
+                    </>
+                  )}
+                  {agent.id === '12' && (
+                    <>
+                      <li>• Qualification criteria</li>
+                      <li>• Lead scoring models</li>
+                      <li>• Meeting readiness</li>
+                      <li>• Disqualification reasons</li>
+                    </>
+                  )}
+                  {agent.id === '13' && (
+                    <>
+                      <li>• Meeting scheduling</li>
+                      <li>• Calendar optimization</li>
+                      <li>• Booking processes</li>
+                      <li>• No-show reduction</li>
+                    </>
+                  )}
+                  {agent.id === '14' && (
+                    <>
+                      <li>• Meeting preparation</li>
+                      <li>• Prospect research</li>
+                      <li>• Discovery questions</li>
+                      <li>• Company intelligence</li>
+                    </>
+                  )}
+                  {agent.id === '15' && (
+                    <>
+                      <li>• Meeting notes format</li>
+                      <li>• Action item tracking</li>
+                      <li>• Follow-up recommendations</li>
+                      <li>• CRM integration</li>
+                    </>
+                  )}
+                  {agent.id >= '16' && (
+                    <>
+                      <li>• System configuration</li>
+                      <li>• Process automation</li>
+                      <li>• Integration setup</li>
+                      <li>• Workflow design</li>
                     </>
                   )}
                 </ul>

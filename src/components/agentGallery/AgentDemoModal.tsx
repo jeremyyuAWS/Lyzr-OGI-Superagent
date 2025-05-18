@@ -9,7 +9,7 @@ interface AgentDemoModalProps {
 }
 
 const AgentDemoModal = ({ agent, onClose }: AgentDemoModalProps) => {
-  const scenario = agentDemoScenarios[agent.id];
+  const scenario = agentDemoScenarios[agent.id] || agentDemoScenarios.default;
   const [messages, setMessages] = useState<Message[]>(scenario?.initialMessages || []);
   const [inputValue, setInputValue] = useState('');
   const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
@@ -48,7 +48,7 @@ const AgentDemoModal = ({ agent, onClose }: AgentDemoModalProps) => {
         responseContent = agentResponses[agent.id][messageText];
       } else {
         // Generic response if no predefined one exists
-        responseContent = `Thank you for your question about "${messageText}". As the ${agent.name}, I'm analyzing this request and preparing a detailed response based on banking regulations and our institutional policies. In a real implementation, this would connect to our secure APIs and knowledge base to provide accurate, compliant information.`;
+        responseContent = `Thank you for your question about "${messageText}". As the ${agent.name}, I'm analyzing your request and preparing a detailed response based on sales development best practices. In a real implementation, this would connect to our CRM, engagement tools, and intelligence systems to provide accurate, actionable information.`;
       }
       
       const agentMessage: Message = {
@@ -218,7 +218,7 @@ const AgentDemoModal = ({ agent, onClose }: AgentDemoModalProps) => {
             <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
               <h4 className="text-xs font-medium text-blue-800 mb-1">About This Demo</h4>
               <p className="text-xs text-gray-600">
-                This demonstration showcases how the {agent.name} helps banking professionals. Try the suggested questions or ask your own.
+                This demonstration showcases how the {agent.name} helps sales professionals. Try the suggested questions or ask your own.
               </p>
               <button 
                 onClick={handleResetConversation}
