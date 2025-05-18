@@ -1,16 +1,32 @@
 import { useState } from 'react';
-import { Shield, AlignLeft, FileText, MessageSquare, CheckCircle, XCircle, AlertTriangle, Info } from 'lucide-react';
+import { Shield, AlignLeft, FileText, MessageSquare, CheckCircle, XCircle, AlertTriangle, Info, Monitor, Sliders, Bell, Eye, UserCheck, BarChart } from 'lucide-react';
+import ComplianceMonitoringPanel from './ComplianceMonitoringPanel';
+import DataPrivacyControls from './DataPrivacyControls';
+import EthicalGuidelinesPanel from './EthicalGuidelinesPanel';
 
 const ResponsibleAIView = () => {
   const [activeTab, setActiveTab] = useState<'principles' | 'governance' | 'explainability' | 'ethical'>('principles');
+  const [showDemo, setShowDemo] = useState(false);
   
   return (
     <div>
-      <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Responsible AI Framework</h2>
-        <p className="text-sm md:text-base text-gray-600">
-          Our approach to ethical, transparent and accountable AI in sales outreach
-        </p>
+      <div className="mb-6 flex justify-between items-start">
+        <div>
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Responsible AI Framework</h2>
+          <p className="text-sm md:text-base text-gray-600">
+            Our approach to ethical, transparent and accountable AI in sales outreach
+          </p>
+        </div>
+        
+        <div>
+          <button
+            onClick={() => setShowDemo(true)}
+            className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors flex items-center"
+          >
+            <Eye className="h-4 w-4 mr-2" />
+            View Compliance Dashboard
+          </button>
+        </div>
       </div>
       
       {/* Secondary Tab Navigation */}
@@ -84,6 +100,16 @@ const ResponsibleAIView = () => {
                   <div>
                     <h4 className="font-medium text-gray-800 mb-1">Human Oversight</h4>
                     <p className="text-sm text-gray-600">Sales professionals maintain appropriate supervision of AI systems, with clear escalation paths for sensitive communications.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="bg-purple-100 p-2 rounded-lg mr-3">
+                    <Monitor className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-800 mb-1">Continuous Monitoring & Improvement</h4>
+                    <p className="text-sm text-gray-600">Our systems undergo regular audits, testing, and performance reviews to ensure continued adherence to our ethical principles.</p>
                   </div>
                 </div>
               </div>
@@ -583,6 +609,16 @@ const ResponsibleAIView = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-xs">
+                    <div className="flex items-start">
+                      <Info className="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium text-indigo-800">Message Source Indicators</p>
+                        <p className="text-gray-700 mt-1">Visual indicators in our interfaces clearly show when content is AI-generated, human-written, or collaboratively created, ensuring complete transparency.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -622,6 +658,10 @@ const ResponsibleAIView = () => {
                         <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
                         <span>Use of non-public personal information</span>
                       </li>
+                      <li className="flex items-center">
+                        <XCircle className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
+                        <span>Automated decisions without human review in regulated industries</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -649,6 +689,10 @@ const ResponsibleAIView = () => {
                       <li className="flex items-center">
                         <AlertTriangle className="h-4 w-4 text-amber-500 mr-2 flex-shrink-0" />
                         <span>High-frequency outreach cadences</span>
+                      </li>
+                      <li className="flex items-center">
+                        <AlertTriangle className="h-4 w-4 text-amber-500 mr-2 flex-shrink-0" />
+                        <span>Emotionally persuasive messaging techniques</span>
                       </li>
                     </ul>
                   </div>
@@ -678,7 +722,83 @@ const ResponsibleAIView = () => {
                         <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                         <span>Meeting scheduling with clear opt-out options</span>
                       </li>
+                      <li className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        <span>Automated follow-ups with frequency limits</span>
+                      </li>
                     </ul>
+                  </div>
+                </div>
+                
+                {/* New section for AI Guard Rails */}
+                <div className="flex items-start">
+                  <div className="bg-indigo-100 p-2 rounded-full mr-3">
+                    <Shield className="h-5 w-5 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-800 mb-1">Automated Guardrails</h4>
+                    <p className="text-xs text-gray-600 mb-2">Technical controls that automatically enforce ethical boundaries:</p>
+                    <div className="mt-2 space-y-3">
+                      <div className="relative">
+                        <div className="flex">
+                          <div className="bg-indigo-100 p-1.5 rounded-lg mr-2">
+                            <Sliders className="h-4 w-4 text-indigo-600" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-800">Permissible Content Filter</div>
+                            <div className="text-xs text-gray-600">Blocks sensitive, discriminatory, or misleading content</div>
+                          </div>
+                        </div>
+                        <div className="absolute top-1.5 right-0">
+                          <div className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Active</div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="flex">
+                          <div className="bg-indigo-100 p-1.5 rounded-lg mr-2">
+                            <Bell className="h-4 w-4 text-indigo-600" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-800">Human Review Trigger</div>
+                            <div className="text-xs text-gray-600">Flags high-risk messages for human approval</div>
+                          </div>
+                        </div>
+                        <div className="absolute top-1.5 right-0">
+                          <div className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Active</div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="flex">
+                          <div className="bg-indigo-100 p-1.5 rounded-lg mr-2">
+                            <UserCheck className="h-4 w-4 text-indigo-600" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-800">Consent Validator</div>
+                            <div className="text-xs text-gray-600">Enforces opt-out compliance across all systems</div>
+                          </div>
+                        </div>
+                        <div className="absolute top-1.5 right-0">
+                          <div className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Active</div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="flex">
+                          <div className="bg-indigo-100 p-1.5 rounded-lg mr-2">
+                            <BarChart className="h-4 w-4 text-indigo-600" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-800">Frequency Limiter</div>
+                            <div className="text-xs text-gray-600">Prevents excessive outreach to the same prospect</div>
+                          </div>
+                        </div>
+                        <div className="absolute top-1.5 right-0">
+                          <div className="px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">Active</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -725,6 +845,15 @@ const ResponsibleAIView = () => {
                       <li>Transparency about AI assistance in communications</li>
                       <li>Respects prospect preferences and time</li>
                       <li>Avoids misleading claims or pressure tactics</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-medium text-blue-700">Training Data</h5>
+                    <ul className="ml-4 list-disc">
+                      <li>Anonymized successful sales communications</li>
+                      <li>Publicly available business communication examples</li>
+                      <li>Custom-developed scenarios and templates</li>
+                      <li>No personally identifiable information included</li>
                     </ul>
                   </div>
                 </div>
@@ -832,6 +961,8 @@ const ResponsibleAIView = () => {
           </div>
         </div>
       </div>
+      
+      {showDemo && <ComplianceMonitoringPanel onClose={() => setShowDemo(false)} />}
     </div>
   );
 };
